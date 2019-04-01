@@ -1,0 +1,75 @@
+<div class="body">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 col-xl-9 mx-auto">
+                <div  class="card card-signin flex-row my-5">
+                    <div class="card-img-left d-none d-md-flex">
+                      
+                    </div>
+                    <div class="card-body">
+                        <h5 *ngIf="!activateLogin" class="card-title text-center">Register</h5>
+                        <h5 *ngIf="activateLogin" class="card-title text-center">Login</h5>
+                        <form class="form-signin">
+                            <div *ngIf="!activateLogin" class="form-label-group">
+                                <input [(ngModel)]="firstName" name="fn" type="text" id="firstName" class="form-control" placeholder="First Name" required autofocus>
+                                <label for="firstName">First Name</label>
+                            </div>
+
+                            <div *ngIf="!activateLogin" class="form-label-group">
+                                <input [(ngModel)]="lastName" name="ln" type="text" id="lastName" class="form-control" placeholder="Last Name" required>
+                                <label for="lastName">Last Name</label>
+                            </div>
+
+                            <div *ngIf="!activateLogin" class="form-label-group">
+                                <input [(ngModel)]="email" name="email" type="text" id="email" class="form-control" placeholder="Email" required>
+                                <label for="email">Email</label>
+                            </div>
+
+                            <div *ngIf="!activateLogin" class="form-label-group">
+                                <input [(ngModel)]="city" name="city" type="text" id="city" class="form-control" placeholder="City" required>
+                                <label for="city">City</label>
+                            </div>
+
+                            <div *ngIf="!activateLogin" class="form-label-group">
+                                <input [(ngModel)]="phoneNumber" name="phNumber" type="text" id="phNumber" class="form-control" placeholder="Phone Number" required>
+                                <label for="city">Phone Number</label>
+                            </div>
+
+                            <hr *ngIf="!activateLogin">
+
+                            <div *ngIf="!activateLogin" class="form-label-group">
+                                <input [(ngModel)]="password" name="pass" type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+                                <label for="inputPassword">Password</label>
+                            </div>
+                                
+                            <div *ngIf="!activateLogin" class="form-label-group">
+                                <input [(ngModel)]="repeatPassword" type="password" name="rePass" id="inputConfirmPassword" class="form-control" placeholder="Password" required>
+                                <label for="inputConfirmPassword">Confirm password</label>
+                            </div>
+
+                            <div *ngIf="activateLogin" class="form-label-group">
+                                <input [(ngModel)]="logEmail" name="logEmail" type="text" id="logEmail" class="form-control" placeholder="Email" required>
+                                <label for="logEmail">Email</label>
+                            </div>
+
+                            <div *ngIf="activateLogin" class="form-label-group">
+                                <input [(ngModel)]="logPassword" name="logPass" type="password" id="logPassword" class="form-control" placeholder="Password" required>
+                                <label for="logPassword">Password</label>
+                            </div>
+
+                            <button *ngIf="!activateLogin" (click)="register()" class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Register</button>
+                            <button *ngIf="activateLogin" (click)="login()" class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Login</button>
+                            <a *ngIf="!activateLogin" class="d-block text-center mt-2 small" (click)="toLogin()">Sign In</a>
+                            <a *ngIf="activateLogin" class="d-block text-center mt-2 small" (click)="toRegister()">Register</a>
+                            <hr class="my-4">
+
+                            <button *ngIf="!activateLogin" class="btn btn-lg btn-google btn-block text-uppercase" type="submit"><i class="fab fa-google mr-2"></i> Sign up with Google</button>
+                            <button *ngIf="!activateLogin" class="btn btn-lg btn-facebook btn-block text-uppercase" type="submit"><i class="fab fa-facebook-f mr-2"></i> Sign up with Facebook</button>
+                            <img class="logo" *ngIf="activateLogin" src="../../assets/vincudor-drept.png">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
