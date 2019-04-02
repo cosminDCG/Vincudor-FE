@@ -1,0 +1,62 @@
+.add-card{
+    border: 0;
+    border-radius: 1rem;
+    box-shadow: 2px 0px 8px black;
+    overflow: hidden;
+    margin-top: 10%;
+    margin-bottom: 10%;
+}
+
+.add-section{
+    margin-top: 3%;
+    margin-bottom: 3%;
+    margin-left: 3%;
+    margin-right: 3%;
+}
+
+.row-md-2 input{
+    width:75%;
+}
+
+.col-md-4, .col-md-8{
+    float: left !important;
+}
+
+.drop-btn, .dropdown-menu{
+    width:100%;
+}
+
+.col-md-4 input, button{
+    margin-bottom: 5%;
+}
+
+.qty-button{
+    width: 25%;
+    margin-left: 37%;
+    margin-bottom: 0% !important;
+}
+
+.qty-span strong{
+    margin-right: 5%;
+    margin-left: 5%;
+}
+
+.qty-input{
+    width: 25%;
+    display: inline;
+}
+
+.quantity{
+    margin-left: 20%;
+}
+
+.qlty-value{
+    color: red;
+    margin-left: 20%;
+}
+
+.insert-button{
+    width: 30%;
+    margin-left: 30%;
+    margin-bottom: 5%;
+}

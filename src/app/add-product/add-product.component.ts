@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { GlobalService } from '../services/global-service/global.service';
 
 @Component({
   selector: 'app-add-product',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddProductComponent implements OnInit {
 
-  constructor() { }
+  public quality = 0;
+  public user: any;
+
+  constructor(private globals:GlobalService) { }
 
   ngOnInit() {
+    this.user = this.globals.currentUser;
   }
 
 }

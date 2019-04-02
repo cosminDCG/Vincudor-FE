@@ -1,1 +1,132 @@
 <app-menu></app-menu>>
+
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div class="card add-card">
+          <div class="row-md-2 add-section">
+              <strong><h3>Product Name</h3></strong>
+              <hr>
+              <input class="form-control">
+          </div>
+
+          <div class="row-md-6 add-section">
+              <strong><h3>Properties</h3></strong>
+              <hr>
+              <div class="col-md-4">
+                <div class="row-md-3">
+                  <strong>Type</strong>
+                  <div class="dropdown">
+                      <button class="btn border border-warning rounded dropdown-toggle drop-btn" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                       Type
+                      </button>
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item">None</a>
+                        <a class="dropdown-item">Dry</a>
+                        <a class="dropdown-item">Semi-Dry</a>
+                        <a class="dropdown-item">Sweet</a>
+                        <a class="dropdown-item">Semi-Sweet</a>
+                      </div>
+                    </div>
+                </div>
+                <div class="row-md-3">
+                  <strong>Fixed Acidity</strong>
+                  <input class="form-control">
+                </div>
+                <div class="row-md-3">
+                  <strong>Volatile Acidity</strong>
+                  <input class="form-control">
+                </div>
+                <div class="row-md-3">
+                  <strong>Citric Acid</strong>
+                  <input class="form-control">
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="row-md-3">
+                  <strong>Residual Sugar</strong>
+                  <input class="form-control">
+                </div>
+                <div class="row-md-3">
+                  <strong>Chlorides</strong>
+                  <input class="form-control">
+                </div>
+                <div class="row-md-3">
+                  <strong>Free Sulfur Dioxide</strong>
+                  <input class="form-control">
+                </div>
+                <div class="row-md-3">
+                  <strong>Total Sulfur Dioxide</strong>
+                  <input class="form-control">
+              </div>
+              </div>
+              <div class="col-md-4">
+                <div class="row-md-3">
+                  <strong>Density</strong>
+                  <input class="form-control">
+                </div>
+                <div class="row-md-3">
+                  <strong>pH</strong>
+                  <input class="form-control">
+                </div>
+                <div class="row-md-3">
+                  <strong>Sulphates</strong>
+                  <input class="form-control">
+                </div>
+                <div class="row-md-3">
+                    <strong>Alcohol</strong>
+                    <input class="form-control">
+                </div>
+              </div>
+          </div>
+
+          <button class="btn border border-warning rounded qty-button">Calculate Quality</button>
+
+          <div class="row-md-4 add-section">
+              <strong><h3>Details</h3></strong>
+              <hr>
+              <div class="col-md-4">
+                  <strong>Calculated Quality</strong><br>
+                  <strong class="qlty-value">{{ quality }}</strong>
+              </div>
+              <div class="col-md-4">
+                  <strong>Price</strong>
+                  <input class="form-control">
+              </div>
+              <div class="col-md-4">
+                  <strong>Quantity</strong><br>
+                  <span class="qty-span quantity">
+                    <strong><i class="fas fa-plus"></i></strong>
+                  </span>
+                    <input class="form-control qty-input">
+                  <span class="qty-span">
+                    <strong><i class="fas fa-minus"></i></strong>
+                  </span>
+              </div>
+              
+              <div class="col-md-4">
+                <strong>Color</strong>
+                <div class="dropdown">
+                  <button class="btn border border-warning rounded dropdown-toggle drop-btn" type="button" id="dropdownMenuButtonColor" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Color
+                  </button>
+                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButtonColor">
+                    <a class="dropdown-item">None</a>
+                    <a class="dropdown-item">White</a>
+                    <a class="dropdown-item">Rose</a>
+                    <a class="dropdown-item">Red</a>
+                  </div>
+                </div>
+                </div>
+              <div class="col-md-8">
+                <strong>Description</strong>
+                <textarea class="form-control" rows="4"></textarea>
+              </div>
+          </div>
+          
+          <button class="btn border border-success rounded insert-button">Add Product</button>
+          
+      </div>
+    </div>
+  </div>
+</div>
