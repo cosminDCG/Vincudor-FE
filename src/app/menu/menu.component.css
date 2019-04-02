@@ -1,0 +1,27 @@
+.nav-border{
+    border-right: 1px solid grey;
+}
+
+.nav-shadow {
+    box-shadow: 0 2px 2px 0 ;
+}
+
+.nav-left{
+    margin-left: 2%;
+}
+
+.nav-right{
+    margin-right: 1%;
+}
+
+li{
+    cursor: pointer;
+}
+
+strong{
+    color: black !important;
+}
+
+.log-out:hover{
+    color: red !important;
+  }

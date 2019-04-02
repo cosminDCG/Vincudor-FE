@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Router} from "@angular/router";
 
 import { UserService } from '../services/user-service/user.service';
 import { GlobalService } from '../services/global-service/global.service';
@@ -23,7 +24,8 @@ export class AuthenticationComponent implements OnInit {
   public logEmail: any;
   public logPassword: any;
   constructor(private userService:UserService,
-              private globals:GlobalService) { }
+              private globals:GlobalService,
+              private router: Router) { }
 
   ngOnInit() {
   }
@@ -64,6 +66,7 @@ export class AuthenticationComponent implements OnInit {
 
     this.userService.login(user).subscribe((res:any)=>{
       this.globals.currentUser = res.user;
+      this.router.navigate(['/user/profile', res.user.user_id]);
     }, (err)=>{
 
     });

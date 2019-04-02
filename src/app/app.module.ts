@@ -7,11 +7,15 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthenticationComponent } from './authentication/authentication.component';
+import { ProfileComponent } from './profile/profile.component';
+import { MenuComponent } from './menu/menu.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    AuthenticationComponent
+    AuthenticationComponent,
+    ProfileComponent,
+    MenuComponent
   ],
   imports: [
     BrowserModule,
@@ -22,6 +26,14 @@ import { AuthenticationComponent } from './authentication/authentication.compone
       {
         path: 'authentication',
         component: AuthenticationComponent
+      },
+      {
+        path: 'user/profile/:id',
+        component: ProfileComponent
+      },
+      {
+        path: 'menu',
+        component: MenuComponent
       }
     ])
   ],
