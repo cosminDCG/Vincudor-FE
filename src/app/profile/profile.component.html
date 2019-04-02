@@ -3,34 +3,52 @@
   <div class="row">
     <div class="col">
       <div class="card profile-card">
-        <div class="row profile-content">
-          <div class="col-md-4">
+        <div class="row">
+          <div class="col-md-4 profile-content">
             <div class="row-md-4">
               <strong>First Name</strong>
-              <h5>{{ user.first_name }}</h5>
+              <h5 *ngIf="!editMode">{{ user.first_name }}</h5>
+              <input *ngIf="editMode" [(ngModel)]="user.first_name" class="form-control">
             </div>
 
             <div class="row-md-4">
                 <strong>City</strong>
-                <h5>{{ user.city }}</h5>
+                <h5 *ngIf="!editMode">{{ user.city }}</h5>
+                <input *ngIf="editMode" [(ngModel)]="user.city" class="form-control">
             </div>
 
             <div class="row-md-4">
               <strong>Email</strong>
-              <h5>{{ user.email }}</h5>
+              <h5 *ngIf="!editMode">{{ user.email }}</h5>
+              <input *ngIf="editMode" [(ngModel)]="user.email" class="form-control">
+            </div>
+
+            <div class="btn-container">
+              <button *ngIf="!editMode" (click)="enableEditMode()" class="btn btn-lg btn-warning">Edit Profile</button>
+              <button *ngIf="editMode" (click)="disableEditMode()" class="btn btn-lg btn-warning">Save Changes</button>
+              <button class="btn btn-lg btn-success">Change Password</button>
+              <button class="btn btn-lg btn-danger">Delete Profile</button>
             </div>
           </div>
 
-          <div class="col-md-4">
+          <div class="col-md-3 profile-content">
               <div class="row-md-4">
                   <strong>Last Name</strong>
-                  <h5>{{ user.last_name }}</h5>
+                  <h5 *ngIf="!editMode">{{ user.last_name }}</h5>
+                  <input *ngIf="editMode" [(ngModel)]="user.last_name" class="form-control">
               </div>
   
               <div class="row-md-4">
                 <strong>Phone Number</strong>
-                <h5>{{ user.phone_number }}</h5>
+                <h5 *ngIf="!editMode">{{ user.phone_number }}</h5>
+                <input *ngIf="editMode" [(ngModel)]="user.phone_number" class="form-control">
               </div>
+          </div>
+
+          <div class="col-md-3">
+            <div class="row img-profile">
+
+            </div>
           </div>
         </div>
       </div>

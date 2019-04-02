@@ -9,13 +9,15 @@ import { AppComponent } from './app.component';
 import { AuthenticationComponent } from './authentication/authentication.component';
 import { ProfileComponent } from './profile/profile.component';
 import { MenuComponent } from './menu/menu.component';
+import { AddProductComponent } from './add-product/add-product.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AuthenticationComponent,
     ProfileComponent,
-    MenuComponent
+    MenuComponent,
+    AddProductComponent
   ],
   imports: [
     BrowserModule,
@@ -34,6 +36,10 @@ import { MenuComponent } from './menu/menu.component';
       {
         path: 'menu',
         component: MenuComponent
+      },
+      {
+        path: 'product/insert',
+        component: AddProductComponent
       }
     ])
   ],

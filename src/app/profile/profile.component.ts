@@ -10,11 +10,20 @@ import { GlobalService } from '../services/global-service/global.service';
 export class ProfileComponent implements OnInit {
 
   public user: any;
+  public editMode = 0;
 
   constructor(private globals:GlobalService) { }
 
   ngOnInit() {
     this.user = this.globals.currentUser;
+  }
+
+  enableEditMode() {
+    this.editMode = 1;
+  }
+
+  disableEditMode(){
+    this.editMode = 0;
   }
 
 }

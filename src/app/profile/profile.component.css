@@ -12,3 +12,44 @@
     margin-right: 3%;
     margin-bottom: 3%;
 }
+
+.img-profile{
+    background: scroll center url('https://cramahistria.ro/wp-content/uploads/pahar-vin-rosu-1.jpg');
+    background-size: cover;
+    margin-right: 0% !important;
+    margin-top: 0% !important;
+    margin-bottom: 0% !important;
+    height: 500px;
+    padding: 0% !important;
+}
+
+.row-md-4{
+    margin-bottom: 15% !important;
+}
+
+strong{
+    width: 100% !important;
+    border-bottom: 3px solid #ae0001;
+    border-radius: 10%;
+}
+
+.btn {
+    font-size: 85%;
+    width: 150px;
+    height: 50px;
+    color: white;
+    border-radius: 0%;
+    margin-top: 10%;
+    margin-left: 3%;
+    border: none;
+
+}
+
+.btn-container{
+    margin-left: 10%;
+    width: 600px;
+}
+
+input{
+    margin-top: 2%;
+}
