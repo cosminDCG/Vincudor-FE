@@ -15,4 +15,12 @@ export class UserService {
   login(user) {
     return this.http.post('http://localhost:3000/user/login', user);
   }
+
+  edit(user){
+    return this.http.post('http://localhost:3000/user/edit', user);
+  }
+
+  delete(user){
+    return this.http.post('http://localhost:3000/user/delete', user);
+  }
 }

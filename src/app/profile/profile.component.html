@@ -27,7 +27,7 @@
               <button *ngIf="!editMode" (click)="enableEditMode()" class="btn btn-lg btn-warning">Edit Profile</button>
               <button *ngIf="editMode" (click)="disableEditMode()" class="btn btn-lg btn-warning">Save Changes</button>
               <button class="btn btn-lg btn-success">Change Password</button>
-              <button class="btn btn-lg btn-danger">Delete Profile</button>
+              <button (click)="delete()" class="btn btn-lg btn-danger">Delete Profile</button>
             </div>
           </div>
 

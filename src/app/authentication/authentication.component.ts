@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Router} from "@angular/router";
+import { Router } from "@angular/router";
 
 import { UserService } from '../services/user-service/user.service';
 import { GlobalService } from '../services/global-service/global.service';
@@ -52,10 +52,11 @@ export class AuthenticationComponent implements OnInit {
     }
     
     this.userService.register(user).subscribe((res:any)=>{
-      this.activateLogin = 1;
+      
     }, (err)=>{
 
     });
+    this.activateLogin = 1;
   }
 
   login(){
