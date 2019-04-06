@@ -22,6 +22,7 @@ strong{
     color: black !important;
 }
 
-.log-out:hover{
+.log-out:hover strong{
     color: red !important;
+    text-decoration: none;
   }

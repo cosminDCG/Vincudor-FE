@@ -48,6 +48,10 @@ import { ProductComponent } from './product/product.component';
       {
         path: 'dashboard',
         component: DashboardComponent
+      },
+      {
+        path: 'product/:id',
+        component: ProductComponent
       }
     ])
   ],

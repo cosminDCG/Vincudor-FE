@@ -6,6 +6,7 @@ import { Injectable } from '@angular/core';
 export class GlobalService {
 
   currentUser: any;
+  currentProductId: any;
 
   constructor() { }
 }

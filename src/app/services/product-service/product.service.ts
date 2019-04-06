@@ -15,4 +15,8 @@ export class ProductService {
   getAllProducts(){
     return this.http.get('http://localhost:3000/wines/all');
   }
+
+  getProductById(wineId){
+    return this.http.get('http://localhost:3000/wines/' + wineId);
+  }
 }
