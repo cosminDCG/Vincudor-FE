@@ -10,6 +10,8 @@ import { AuthenticationComponent } from './authentication/authentication.compone
 import { ProfileComponent } from './profile/profile.component';
 import { MenuComponent } from './menu/menu.component';
 import { AddProductComponent } from './add-product/add-product.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { ProductComponent } from './product/product.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,9 @@ import { AddProductComponent } from './add-product/add-product.component';
     AuthenticationComponent,
     ProfileComponent,
     MenuComponent,
-    AddProductComponent
+    AddProductComponent,
+    DashboardComponent,
+    ProductComponent
   ],
   imports: [
     BrowserModule,
@@ -40,6 +44,10 @@ import { AddProductComponent } from './add-product/add-product.component';
       {
         path: 'product/insert',
         component: AddProductComponent
+      },
+      {
+        path: 'dashboard',
+        component: DashboardComponent
       }
     ])
   ],

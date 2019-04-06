@@ -1,0 +1,50 @@
+.dash-card{
+    border: 0;
+    border-radius: 1rem;
+    box-shadow: 2px 0px 8px black;
+    overflow: hidden;
+    margin-top: 10%;
+    margin-bottom: 10%;
+    margin-left: 5%;
+    margin-right: 5%;
+    background-color: white;
+}
+
+.item-card{
+    margin-top: 4%;
+    margin-bottom: 4%;
+    cursor: pointer;
+}
+
+img{
+    margin-top: 2%;
+    max-height: 300px;
+}
+
+.review-star{
+    font-size: 150%;
+    margin-left: 4%;
+}
+
+.float-left{
+    height: 100%;
+    border-right: 1px solid black;
+}
+
+.col-md-6{
+    text-align: center;
+}
+
+.cart-cont{
+    background-color: rgba(211, 175, 55, 0.753);
+}
+
+.to-cart{
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+.cart-cont:hover{
+    color: white;
+    background-color: #ffc107;
+}

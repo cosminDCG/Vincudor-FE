@@ -11,4 +11,8 @@ export class ProductService {
   addProduct(product){
     return this.http.post('http://localhost:3000/wine/newWine', product);
   }
+
+  getAllProducts(){
+    return this.http.get('http://localhost:3000/wines/all');
+  }
 }
