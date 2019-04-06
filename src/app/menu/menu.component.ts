@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {Router} from "@angular/router";
+import { Router } from "@angular/router";
+
+import { GlobalService } from '../services/global-service/global.service';
 
 @Component({
   selector: 'app-menu',
@@ -8,7 +10,8 @@ import {Router} from "@angular/router";
 })
 export class MenuComponent implements OnInit {
 
-  constructor(private router:Router) { }
+  constructor(private router:Router,
+              private global:GlobalService) { }
 
   ngOnInit() {
   }

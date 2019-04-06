@@ -5,7 +5,7 @@
 
     <ul class="navbar-nav nav-left">
       <li class="nav-item nav-border">
-        <a class="nav-link">        
+        <a class="nav-link" [routerLink]="['/user/profile',global.currentUser.user_id]">        
           <strong><i class="fas fa-user-circle"></i> Profile</strong> 
         </a>
       </li>
