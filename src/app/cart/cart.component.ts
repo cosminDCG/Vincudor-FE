@@ -20,11 +20,14 @@ export class CartComponent implements OnInit {
 
     recalculateCart()
       {
+
+        console.log("Mama");
         var subtotal = 0;
 
         var taxRate = 0.05;
         var shippingRate = 0;
         var fadeTime = 300;
+
         /* Sum up row totals */
         $('.product').each(function () {
         subtotal += parseFloat($(this).children('.product-line-price').text());
@@ -41,17 +44,16 @@ export class CartComponent implements OnInit {
         $('#cart-shipping').html(shipping.toFixed(2));
         $('#cart-total').html(total.toFixed(2));
         if(total == 0){
-        $('.checkout').fadeOut(fadeTime);
+        $('.checkout').fadeOut(300);
         }else{
-        $('.checkout').fadeIn(fadeTime);
+        $('.checkout').fadeIn(300);
         }
-        $('.totals-value').fadeIn(fadeTime);
+        $('.totals-value').fadeIn(300);
         });
       }
 
     removeItem(removeButton : number)
       {
-
           var productRow = $('#' + removeButton);
           console.log(productRow);
           productRow.slideUp(300, function() {
@@ -67,10 +69,12 @@ export class CartComponent implements OnInit {
           var productRow = $('#' + quantityInput);
 
           var price = parseFloat(productRow.children('.product-price').text());
+          var productQuatityDiv = productRow.children('.product-quantity');
+          var quantity = productQuatityDiv.children('.quantity').val();
 
-          var quantity = $('#'+ quantityInput).val();
           var linePrice = price * quantity;
-          console.log(linePrice);
+          var linePriceDiv = productRow.children('.product-line-price');
+          linePriceDiv.text(linePrice);
 
 
           productRow.children('.product-line-price').each(function () {
