@@ -1,3 +1,94 @@
-<p>
-  product works!
-</p>
+<app-menu></app-menu>
+
+<div class="row">
+    <div class="col">
+        <div class="container prod-card">
+            <div class="row">
+                <div class="col-md-6">
+                    <img src="..\..\assets\{{currentItem.color.toLowerCase()}}.jpg" class="image-responsive img-product"/>
+                </div>
+
+                <div class="col-md-6 info-prod">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h4>{{currentItem.wine_name}}</h4><hr>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h5><span class="badge badge-warning">Color {{currentItem.color}}</span></h5>
+                            <h5><span class="badge badge-primary">Type {{currentItem.type}}</span></h5>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            <h5 *ngFor="let i of [1,2,3,4,5]"><i class="far fa-star review-star"></i></h5>
+                            <span class="badge badge-success">0 reviewers</span>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12 bottom-rule">
+                            <h2 class="product-price">{{currentItem.price}} Lei/Liter</h2>
+                        </div>
+                    </div>
+                    <hr>
+
+                    <div class="row add-to-cart">
+                        <div class="col-md-4 product-qty">
+                            <span class="btn btn-default btn-lg btn-qty" (click)="qtyMinus()">
+                                <i class="fas fa-minus"></i>
+                            </span>
+                            <input [(ngModel)]="quantity" class="form-control qty-input" />
+                            <span class="btn btn-default btn-lg btn-qty" (click)="qtyPlus()">
+                                <i class="fas fa-plus"></i>
+                            </span>
+                        </div>
+                        <div class="col-md-4">
+                            <button class="btn btn-lg btn-brand btn-full-width">
+                            Add to Cart
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-4 text-center">
+                            <span class="monospaced"><strong>Stock: {{ currentItem.quantity }} liters</strong></span>
+                        </div>
+                        
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12 bottom-rule top-10"></div>
+                        </div>
+                        <hr>
+
+                        <div class="row">
+                            <div class="col-md-12 top-10">
+                                <h6><strong>Produced by: {{currentItem.producer.first_name}} {{currentItem.producer.last_name}}</strong></h6>
+                            </div>
+                        </div>
+                
+                        <div class="row">
+                            <div class="col-md-12 top-10">
+                                <p>To order by telephone, <a href="tel:07xx.xxx.xxx">please call {{currentItem.producer.phone_number}}</a></p>
+                            </div>
+                        </div>
+                </div>
+
+            </div>
+            <div class="nav flex-column nav-pills float-left" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                <a class="nav-link active" id="v-pills-description-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-description" aria-selected="true"><i class="fas fa-info-circle"></i> Description</a>
+                <a class="nav-link" id="v-pills-reviews-tab" data-toggle="pill" href="#v-pills-reviews" role="tab" aria-controls="v-pills-reviews" aria-selected="false"><i class="fas fa-comments"></i> Reviews</a>
+                <a class="nav-link" id="v-pills-add-rew-tab" data-toggle="pill" href="#v-pills-add-rew" role="tab" aria-controls="v-pills-add-rew" aria-selected="false"><i class="fas fa-comment-medical"></i> Add Review</a>
+            </div>
+            <div class="tab-content float-right" id="v-pills-tabContent">
+                <div class="tab-pane fade show active" id="v-pills-description" role="tabpanel" aria-labelledby="v-pills-description-tab">{{currentItem.description}}</div>
+                <div class="tab-pane fade" id="v-pills-reviews" role="tabpanel" aria-labelledby="v-pills-reviews-tab">...</div>
+                <div class="tab-pane fade" id="v-pills-add-rew" role="tabpanel" aria-labelledby="v-pills-add-rew-tab">...</div>
+            </div>
+        </div>
+    </div>
+</div>

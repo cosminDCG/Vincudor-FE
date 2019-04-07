@@ -1,0 +1,75 @@
+.prod-card{
+    border: 0;
+    border-radius: 1rem;
+    box-shadow: 2px 0px 8px black;
+    overflow: hidden;
+    margin-top: 10%;
+    margin-bottom: 10%;
+    margin-left: 15%;
+    margin-right: 5%;
+    background-color: white;
+}
+
+h5{
+    display: inline;
+    margin-right: 2%;
+}
+
+.img-product{
+    width: 100%;
+    height: 100%;
+}
+
+.review-star{
+    margin-right: 2%;
+}
+
+.add-to-cart .btn-qty {
+    width: 52px;
+    height: 46px;
+}
+
+.add-to-cart .btn { 
+    border-radius: 0; 
+}
+
+.btn-sm{
+    margin-top: 2%;
+    border-radius: 0;
+}
+
+.btn-full-width{
+    background-color: rgba(211, 175, 55, 0.753);
+}
+
+.qty-input{
+    width: 30%;
+    display: inline;
+}
+
+.info-prod .row{
+    margin-top: 3%;
+}
+
+.nav-pills{
+    margin-left: 3%;
+    margin-top: 3%;
+    margin-bottom: 3%;
+    width:15%;
+}
+
+.nav-pills .nav-link{
+    color: rgba(211, 175, 55, 0.753) !important;
+}
+
+.nav-pills .active{
+    background-color: #ffc107 !important;
+    color: black !important;
+    font-weight: bold;
+} 
+
+.tab-content{
+    width: 80%;
+    margin-top: 3%;
+    margin-bottom: 3%;
+}
