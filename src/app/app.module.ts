@@ -56,10 +56,6 @@ import { CartComponent } from './cart/cart.component';
 
          path: 'cart',
          component: CartComponent
-
-        path: 'product/:id',
-        component: ProductComponent
-
       }
     ])
   ],

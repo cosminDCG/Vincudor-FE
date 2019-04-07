@@ -1,3 +1,6 @@
+.container {
+	margin-top:100px;
+}
 .product-image { float: left; width: 20%; }
 .product-details { float: left; width: 37%; }
 .product-price { float: left; width: 12%; }
@@ -76,6 +79,9 @@ label {
   margin-bottom: 20px;
   padding-bottom: 10px;
   border-bottom: 1px solid #eee;
+  width:100%; 
+  display:flex; 
+  align-items:center;
   
   .product-image {
     text-align: center;

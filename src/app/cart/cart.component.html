@@ -1,54 +1,43 @@
 	<app-menu></app-menu>
-	<h1 id="buy">Lindas BookStop</h1>  
-	<h1>Book Selection's</h1>
+	<h1>Cos de cumparaturi</h1>  
 	<div class="container">
 		<div class="shopping-cart">
-
-			<div class="column-labels">
-				<label class="product-image">Image</label>
-				<label class="product-details">Product</label>
-				<label class="product-price">Price</label>
-				<label class="product-quantity">Quantity</label>
-				<label class="product-removal">Remove</label>
-				<label class="product-line-price">Total</label>
-			</div>
-
-			<div class="product" style="width:100%; display:flex; align-items:center;">
+			<div *ngFor="let item of items; let i = index" class="product" style="width:100%; display:flex; align-items:center;">
 				<div class="product-image">
-					<img src="https://ewedit.files.wordpress.com/2016/09/kkhp1-lg.jpg?w=399" style="width:100%">
+					<img src="https://i.simpalsmedia.com/thumbor/0x300/i.simpalsmedia.com/marketplace/products/original/27b836ed63cdaddd1acb0eb5c25adb7f.png" style="width:100%">
 				</div>
 				<div class="product-details">
-					<div class="product-title">Harry Potter Paperback</div>
-					<p class="product-description">Harry Potter is a series of fantasy novels written by British author J. K. Rowling. The novels chronicle the life of a young wizard, Harry Potter, and his friends Hermione Granger and Ron Weasley, all ... </p>
+					<div class="product-title">{{item.wine_name}}</div>
+					<p class="product-description" style="width:80%;">{{item.description}}</p>
 				</div>
 				<div class="product-price">15</div>
 				<div class="product-quantity">
-					<input type="number" value="1" min="1">
+					<input type="number" value="1" min="1" style="width:50%; float:right;">
 				</div>
 				<div class="product-removal">
-					<button class="remove-product">
-						Remove
-					</button>
+					
+					<button class="btn btn-danger btn-sm remove-product"><i class="far fa-trash-alt"></i></button>								
+					
 				</div>
 				<div class="product-line-price">15</div>
 			</div>
 
 			<div class="product" style="width:100%; display:flex; align-items:center;">
 				<div class="product-image">
-					<img src="https://ewedit.files.wordpress.com/2016/09/kkhp1-lg.jpg?w=399" style="width:100%">
+					<img src="https://i.simpalsmedia.com/thumbor/0x300/i.simpalsmedia.com/marketplace/products/original/27b836ed63cdaddd1acb0eb5c25adb7f.png" style="width:100%;">
 				</div>
 				<div class="product-details">
-					<div class="product-title">Harry Potter Hardcover</div>
-					<p class="product-description">Harry Potter is a series of fantasy novels written by British author J. K. Rowling. The novels chronicle the life of a young wizard, Harry Potter, and his friends Hermione Granger and Ron Weasley, all ... </p>
+					<div class="product-title">Purcari alb</div>
+					<p class="product-description" style="width:80%;">Vin alb sec, 13% vol. alc., produs la Vinaria Purcari in 2015, Republica Moldova </p>
 				</div>
 				<div class="product-price">25</div>
 				<div class="product-quantity">
-					<input type="number" value="1" min="1">
+					<input type="number" value="1" min="1" style="width:50%; float:right;">
 				</div>
 				<div class="product-removal">
-					<button class="remove-product">
-						Remove
-					</button>
+					
+					<button class="btn btn-danger btn-sm remove-product"><i class="far fa-trash-alt"></i></button>								
+					
 				</div>
 				<div class="product-line-price">25</div>
 			</div>
@@ -56,198 +45,43 @@
 
 			<div class="product" style="width:100%; display:flex; align-items:center;">
 				<div class="product-image">
-					<img src="https://upload.wikimedia.org/wikipedia/en/2/27/Legend_Marie_Lu_Book_cover.jpg" style="width:100%">
+					<img src="https://i.simpalsmedia.com/thumbor/0x300/i.simpalsmedia.com/marketplace/products/original/27b836ed63cdaddd1acb0eb5c25adb7f.png" style="width:100%">
 				</div>
 				<div class="product-details">
-					<div class="product-title">Legend Paperback</div>
-					<p class="product-description">Legend is a 2011 dystopian young adult novel written by American author Marie Lu. It is the first book in the Legend trilogy, followed by Prodigy and Champion.</p>
+					<div class="product-title">Purcari alb</div>
+					<p class="product-description" style="width:80%;">Vin alb sec, 13% vol. alc., produs la Vinaria Purcari in 2015, Republica Moldova</p>
 				</div>
 				<div class="product-price">6</div>
 				<div class="product-quantity">
-					<input type="number" value="1" min="1">
+					<input type="number" value="1" min="1" style="width:100%;">
 				</div>
 				<div class="product-removal">
-					<button class="remove-product">
-						Remove
-					</button>
+					
+					<button class="btn btn-danger btn-sm remove-product"><i class="far fa-trash-alt"></i></button>								
+					
 				</div>
 				<div class="product-line-price">6</div>
 			</div>
-
-
-
-			<div class="product" style="width:100%; display:flex; align-items:center;">
-				<div class="product-image">
-					<img src="https://upload.wikimedia.org/wikipedia/en/2/27/Legend_Marie_Lu_Book_cover.jpg" style="width:100%">
-				</div>
-				<div class="product-details">
-					<div class="product-title">Legend Hardcover</div>
-					<p class="product-description">Legend is a 2011 dystopian young adult novel written by American author Marie Lu. It is the first book in the Legend trilogy, followed by Prodigy and Champion.</p>
-				</div>
-				<div class="product-price">10</div>
-				<div class="product-quantity">
-					<input type="number" value="1" min="1">
-				</div>
-				<div class="product-removal">
-					<button class="remove-product">
-						Remove
-					</button>
-				</div>
-				<div class="product-line-price">10</div>
-			</div>
-
-
-
-			<div class="product" style="width:100%; display:flex; align-items:center;">
-				<div class="product-image">
-					<img src="https://upload.wikimedia.org/wikipedia/en/4/4f/The_official_poster_for_the_film_Hidden_Figures%2C_2016.jpg" style="width:100%">
-				</div>
-				<div class="product-details">
-					<div class="product-title">Hidden Figures Paperback</div>
-					<p class="product-description">Three brilliant African-American women at NASA -- Katherine Johnson (Taraji P. Henson), Dorothy Vaughan (Octavia Spencer) and Mary Jackson (Janelle Monáe) -- serve as the brains behind one of the greatest operations in history: the launch of astronaut John Glenn (Glen Powell) into orbit, a stunning … </p>
-				</div>
-				<div class="product-price">7</div>
-				<div class="product-quantity">
-					<input type="number" value="1" min="1">
-				</div>
-				<div class="product-removal">
-					<button class="remove-product">
-						Remove
-					</button>
-				</div>
-				<div class="product-line-price">7</div>
-			</div>
-
-
-
-			<div class="product" style="width:100%; display:flex; align-items:center;">
-				<div class="product-image">
-					<img src="https://upload.wikimedia.org/wikipedia/en/4/4f/The_official_poster_for_the_film_Hidden_Figures%2C_2016.jpg" style="width:100%">
-				</div>
-				<div class="product-details">
-					<div class="product-title">Hidden Figures Hardcover</div>
-					<p class="product-description">Three brilliant African-American women at NASA -- Katherine Johnson (Taraji P. Henson), Dorothy Vaughan (Octavia Spencer) and Mary Jackson (Janelle Monáe) -- serve as the brains behind one of the greatest operations in history: the launch of astronaut John Glenn (Glen Powell) into orbit, a stunning … </p>
-				</div>
-				<div class="product-price">10</div>
-				<div class="product-quantity">
-					<input type="number" value="1" min="1">
-				</div>
-				<div class="product-removal">
-					<button class="remove-product">
-						Remove
-					</button>
-				</div>
-				<div class="product-line-price">10</div>
-			</div>
-
-
-			<div class="product" style="width:100%; display:flex; align-items:center;">
-				<div class="product-image">
-					<img src="https://images-na.ssl-images-amazon.com/images/I/41LPBRNaVCL._SX355_BO1,204,203,200_.jpg" style="width:100%">
-				</div>
-				<div class="product-details">
-					<div class="product-title">Hunger Games Paperback</div>
-					<p class="product-description">In what was once North America, the Capitol of Panem maintains its hold on its 12 districts by forcing them each to select a boy and a girl, called Tributes, to compete in a nationally televised event called the Hunger Games. Every citizen must watch as the youths fight to the death until only one r…</p>
-				</div>
-				<div class="product-price">10</div>
-				<div class="product-quantity">
-					<input type="number" value="1" min="1">
-				</div>
-				<div class="product-removal">
-					<button class="remove-product">
-						Remove
-					</button>
-				</div>
-				<div class="product-line-price">10</div>
-			</div>
-
-
-
-			<div class="product" style="width:100%; display:flex; align-items:center;">
-				<div class="product-image">
-					<img src="https://images-na.ssl-images-amazon.com/images/I/41LPBRNaVCL._SX355_BO1,204,203,200_.jpg" style="width:100%">
-				</div>
-				<div class="product-details">
-					<div class="product-title">Hunger Games Hardcover</div>
-					<p class="product-description">In what was once North America, the Capitol of Panem maintains its hold on its 12 districts by forcing them each to select a boy and a girl, called Tributes, to compete in a nationally televised event called the Hunger Games. Every citizen must watch as the youths fight to the death until only one r…</p>
-				</div>
-				<div class="product-price">15</div>
-				<div class="product-quantity">
-					<input type="number" value="1" min="1">
-				</div>
-				<div class="product-removal">
-					<button class="remove-product">
-						Remove
-					</button>
-				</div>
-				<div class="product-line-price">15</div>
-			</div>
-
-
-
-			<div class="product" style="width:100%; display:flex; align-items:center;">
-				<div class="product-image">
-					<img src="http://is4.mzstatic.com/image/thumb/Video/v4/43/e6/f5/43e6f595-375f-9634-e099-ea7b089466ad/source/1200x630bb.jpg" style="width:100%">
-				</div>
-				<div class="product-details">
-					<div class="product-title">Divergent Paperback</div>
-					<p class="product-description">Tris Prior (Shailene Woodley) lives in a futuristic world in which society is divided into five factions. As each person enters adulthood, he or she must choose a faction and commit to it for life. Tris chooses Dauntless -- those who pursue bravery above all else. However, her initiation leads to th… </p>
-				</div>
-				<div class="product-price">10</div>
-				<div class="product-quantity">
-					<input type="number" value="1" min="1">
-				</div>
-				<div class="product-removal">
-					<button class="remove-product">
-						Remove
-					</button>
-				</div>
-				<div class="product-line-price">10</div>
-			</div>
-
-
-
-			<div class="product" style="width:100%; display:flex; align-items:center;">
-				<div class="product-image">
-					<img src="http://is4.mzstatic.com/image/thumb/Video/v4/43/e6/f5/43e6f595-375f-9634-e099-ea7b089466ad/source/1200x630bb.jpg" style="width:100%">
-				</div>
-				<div class="product-details">
-					<div class="product-title">Divergent Hardcover</div>
-					<p class="product-description">Tris Prior (Shailene Woodley) lives in a futuristic world in which society is divided into five factions. As each person enters adulthood, he or she must choose a faction and commit to it for life. Tris chooses Dauntless -- those who pursue bravery above all else. However, her initiation leads to th… </p>
-				</div>
-				<div class="product-price">15</div>
-				<div class="product-quantity">
-					<input type="number" value="1" min="1">
-				</div>
-				<div class="product-removal">
-					<button class="remove-product">
-						Remove
-					</button>
-				</div>
-				<div class="product-line-price">15</div>
-			</div>
-
-
-			<div class="totals">
+			<div class="totals" style="text-align:right;">
 				<div class="totals-item">
 					<label>Subtotal</label>
 					<div class="totals-value" id="cart-subtotal">123</div>
 				</div>
 				<div class="totals-item">
-					<label>Tax (5%)</label>
+					<label>Taxe (5%)</label>
 					<div class="totals-value" id="cart-tax">3.60</div>
 				</div>
 				<div class="totals-item">
-					<label>Shipping</label>
+					<label>Livrare</label>
 					<div class="totals-value" id="cart-shipping">0</div>
 				</div>
 				<div class="totals-item totals-item-total">
-					<label>Grand Total</label>
+					<label>Total</label>
 					<div class="totals-value" id="cart-total">126.6</div>
 				</div>
 			</div>
 
-			<button class="checkout">Checkout</button>
+			<button class="checkout">Finalizeaza comanda</button>
 
 		</div>
 	</div>

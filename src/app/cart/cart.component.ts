@@ -28,13 +28,13 @@ export class CartComponent implements OnInit {
 
   ngOnInit() {
 
-  	 /* Set rates + misc */
+  
 var taxRate = 0.05;
 var shippingRate = 0; 
 var fadeTime = 300;
 
 
-/* Assign actions */
+recalculateCart();
 $('.product-quantity input').change( function() {
   updateQuantity(this);
 });
@@ -44,7 +44,8 @@ $('.product-removal button').click( function() {
 });
 
 
-/* Recalculate cart */
+
+
 function recalculateCart()
 {
   var subtotal = 0;
@@ -54,7 +55,7 @@ function recalculateCart()
     subtotal += parseFloat($(this).children('.product-line-price').text());
   });
   
-  /* Calculate totals */
+  
   var tax = subtotal * taxRate;
   var shipping = (subtotal > 0 ? shippingRate : 0);
   var total = subtotal + tax + shipping;
@@ -75,7 +76,7 @@ function recalculateCart()
 }
 
 
-/* Update quantity */
+
 function updateQuantity(quantityInput)
 {
   /* Calculate line price */
@@ -84,7 +85,7 @@ function updateQuantity(quantityInput)
   var quantity = $(quantityInput).val();
   var linePrice = price * quantity;
   
-  /* Update line price display and recalc cart totals */
+ 
   productRow.children('.product-line-price').each(function () {
     $(this).fadeOut(fadeTime, function() {
       $(this).text(linePrice.toFixed(2));
@@ -95,16 +96,13 @@ function updateQuantity(quantityInput)
 }
 
 
-/* Remove item from cart */
 function removeItem(removeButton)
 {
-  /* Remove row from DOM and recalc cart total */
   var productRow = $(removeButton).parent().parent();
   productRow.slideUp(fadeTime, function() {
     productRow.remove();
     recalculateCart();
   });
 }
- 
   }
 }
