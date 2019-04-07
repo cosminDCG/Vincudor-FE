@@ -1,8 +1,8 @@
 	<app-menu></app-menu>
-	<h1>Cos de cumparaturi</h1>  
+	<h1>Cos de cumparaturi</h1>
 	<div class="container">
 		<div class="shopping-cart">
-			<div *ngFor="let item of items; let i = index" class="product" style="width:100%; display:flex; align-items:center;">
+			<div *ngFor="let item of items; let i = index" class="product" id="{{item.id}}" style="width:100%; display:flex; align-items:center;">
 				<div class="product-image">
 					<img src="https://i.simpalsmedia.com/thumbor/0x300/i.simpalsmedia.com/marketplace/products/original/27b836ed63cdaddd1acb0eb5c25adb7f.png" style="width:100%">
 				</div>
@@ -12,56 +12,17 @@
 				</div>
 				<div class="product-price">15</div>
 				<div class="product-quantity">
-					<input type="number" value="1" min="1" style="width:50%; float:right;">
+					<input type="number" value="1" min="1" style="width:50%; float:right;" (change) = "updateQuantity(item.id)">
+
 				</div>
 				<div class="product-removal">
-					
-					<button class="btn btn-danger btn-sm remove-product"><i class="far fa-trash-alt"></i></button>								
-					
+
+					<button class="btn btn-danger btn-sm remove-product" (click)="removeItem(item.id )"><i class="far fa-trash-alt"></i></button>
+
 				</div>
 				<div class="product-line-price">15</div>
 			</div>
 
-			<div class="product" style="width:100%; display:flex; align-items:center;">
-				<div class="product-image">
-					<img src="https://i.simpalsmedia.com/thumbor/0x300/i.simpalsmedia.com/marketplace/products/original/27b836ed63cdaddd1acb0eb5c25adb7f.png" style="width:100%;">
-				</div>
-				<div class="product-details">
-					<div class="product-title">Purcari alb</div>
-					<p class="product-description" style="width:80%;">Vin alb sec, 13% vol. alc., produs la Vinaria Purcari in 2015, Republica Moldova </p>
-				</div>
-				<div class="product-price">25</div>
-				<div class="product-quantity">
-					<input type="number" value="1" min="1" style="width:50%; float:right;">
-				</div>
-				<div class="product-removal">
-					
-					<button class="btn btn-danger btn-sm remove-product"><i class="far fa-trash-alt"></i></button>								
-					
-				</div>
-				<div class="product-line-price">25</div>
-			</div>
-
-
-			<div class="product" style="width:100%; display:flex; align-items:center;">
-				<div class="product-image">
-					<img src="https://i.simpalsmedia.com/thumbor/0x300/i.simpalsmedia.com/marketplace/products/original/27b836ed63cdaddd1acb0eb5c25adb7f.png" style="width:100%">
-				</div>
-				<div class="product-details">
-					<div class="product-title">Purcari alb</div>
-					<p class="product-description" style="width:80%;">Vin alb sec, 13% vol. alc., produs la Vinaria Purcari in 2015, Republica Moldova</p>
-				</div>
-				<div class="product-price">6</div>
-				<div class="product-quantity">
-					<input type="number" value="1" min="1" style="width:100%;">
-				</div>
-				<div class="product-removal">
-					
-					<button class="btn btn-danger btn-sm remove-product"><i class="far fa-trash-alt"></i></button>								
-					
-				</div>
-				<div class="product-line-price">6</div>
-			</div>
 			<div class="totals" style="text-align:right;">
 				<div class="totals-item">
 					<label>Subtotal</label>
