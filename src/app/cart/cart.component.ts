@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { IProduct } from "../product/iproduct";
 import { Subject } from 'rxjs';
+
+import { GlobalService } from '../services/global-service/global.service';
 
 @Component({
 selector: 'app-cart',
@@ -19,9 +21,10 @@ export class CartComponent implements OnInit {
   upproducts: IProduct[] = [];
   selectedProduct : Subject<any> = new Subject;
   total:number = 0;
+  public user:any;
 
   
-  constructor() {
+  constructor(private global:GlobalService) {
     this.products = [
                       {id:1, wine_name:'Purcari Rose', description:'Aceasta este o descriere', price:20,quantity:1},
                       {id:2, wine_name:'Purcari Rose', description:'Aceasta este o descriere', price:40,quantity:1}
@@ -29,7 +32,16 @@ export class CartComponent implements OnInit {
   }
 
   ngOnInit() {
+    if(localStorage.getItem('crUser') && this.global.currentUser == null) {
+      var aux = localStorage.getItem('crUser');
+      this.global.currentUser = JSON.parse(aux);
+    }
+    this.user = this.global.currentUser;
       this.totalPrice();
+  }
+
+  @HostListener('window:beforeunload') saveUser() {
+    localStorage.setItem('crUser', JSON.stringify(this.global.currentUser));
   }
 
   getpopup(det) {

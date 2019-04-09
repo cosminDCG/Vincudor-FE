@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 
 import { GlobalService } from '../services/global-service/global.service';
 import { ProductService } from '../services/product-service/product.service';
@@ -17,11 +17,26 @@ export class ProductComponent implements OnInit {
               private productService:ProductService) { }
 
   ngOnInit() {
+    if(localStorage.getItem('crUser') && this.global.currentUser == null) {
+      var aux = localStorage.getItem('crUser');
+      this.global.currentUser = JSON.parse(aux);
+    }
+
+    if(localStorage.getItem('crProd') && this.global.currentProductId == null) {
+      var aux1 = localStorage.getItem('crProd');
+      this.global.currentProductId = JSON.parse(aux1);
+    }
+
     this.productService.getProductById(this.global.currentProductId).subscribe((res:any)=>{
       this.currentItem = res.wine;
     }, (err)=>{
 
     });
+  }
+
+  @HostListener('window:beforeunload') saveUser() {
+    localStorage.setItem('crUser', JSON.stringify(this.global.currentUser));
+    localStorage.setItem('crProd',JSON.stringify(this.global.currentProductId));
   }
 
   qtyPlus(){
