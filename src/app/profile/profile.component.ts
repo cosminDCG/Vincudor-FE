@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { Router } from "@angular/router";
 
 import { GlobalService } from '../services/global-service/global.service';
@@ -19,7 +19,15 @@ export class ProfileComponent implements OnInit {
               private router:Router) { }
 
   ngOnInit() {
+    if(localStorage.getItem('crUser') && this.globals.currentUser == null) {
+      var aux = localStorage.getItem('crUser');
+      this.globals.currentUser = JSON.parse(aux);
+    }
     this.user = this.globals.currentUser;
+  }
+
+  @HostListener('window:beforeunload') saveUser() {
+    localStorage.setItem('crUser', JSON.stringify(this.globals.currentUser));
   }
 
   enableEditMode() {

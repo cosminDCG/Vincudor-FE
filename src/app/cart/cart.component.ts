@@ -1,9 +1,15 @@
+
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
+
+import { Component, OnInit, HostListener } from '@angular/core';
+
 import { IProduct } from "../product/iproduct";
 import { Subject } from 'rxjs';
 import { OriginalSource } from 'webpack-sources';
 import { ProductService } from '../services/product-service/product.service';
+import { GlobalService } from '../services/global-service/global.service';
+
 import { GlobalService } from '../services/global-service/global.service';
 
 @Component({
@@ -47,9 +53,31 @@ export class CartComponent implements OnInit {
 
     });
 
+
+  public user:any;
+
+  
+  constructor(private global:GlobalService) {
+    this.products = [
+                      {id:1, wine_name:'Purcari Rose', description:'Aceasta este o descriere', price:20,quantity:1},
+                      {id:2, wine_name:'Purcari Rose', description:'Aceasta este o descriere', price:40,quantity:1}
+                    ];
+  }
+
+  ngOnInit() {
+    if(localStorage.getItem('crUser') && this.global.currentUser == null) {
+      var aux = localStorage.getItem('crUser');
+      this.global.currentUser = JSON.parse(aux);
+    }
+    this.user = this.global.currentUser;
+
       this.totalPrice();
       this.isViewable = true;
       this.isCheckout = false;
+  }
+
+  @HostListener('window:beforeunload') saveUser() {
+    localStorage.setItem('crUser', JSON.stringify(this.global.currentUser));
   }
 
   getpopup(det) {

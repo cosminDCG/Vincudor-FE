@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { Router } from "@angular/router";
 
 import { ProductService } from '../services/product-service/product.service';
@@ -19,6 +19,10 @@ export class DashboardComponent implements OnInit {
               private router:Router) { }
 
   ngOnInit() {
+    if(localStorage.getItem('crUser') && this.global.currentUser == null) {
+      var aux = localStorage.getItem('crUser');
+      this.global.currentUser = JSON.parse(aux);
+    }
 
     this.user = this.globals.currentUser;
     this.productService.getAllProducts().subscribe((res:any)=>{
@@ -28,6 +32,10 @@ export class DashboardComponent implements OnInit {
 
     });
     
+  }
+
+  @HostListener('window:beforeunload') saveUser() {
+    localStorage.setItem('crUser', JSON.stringify(this.global.currentUser));
   }
 
   seeItemDetails(item){
