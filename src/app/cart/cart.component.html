@@ -1,5 +1,5 @@
 <app-menu></app-menu>
-<div class="container">
+<div *ngIf="isViewable" class="container">
     <div class="row">
         <div class="col-md-5">Produs</div>
         <div class="col-md-2">Pret</div>
@@ -28,17 +28,95 @@
             
           </div>
           <div class="col-md-2">
-              <button class="btn btn-danger btn-sm" (click)="delpopup(list.id)">Delete</button>
+              <button type="submit" class="btn btn-danger btn-sm" (click)="delpopup(list.id)"><i class="fas fa-trash-alt"></i>  </button>
           </div>
     </div>
     <div class="row">
       <div class="col-md-5"></div>
       <div class="col-md-2"></div>
-      <div class="col-md-3"></div>
-      <div class="col-md-2">
-        <h4>{{total | currency: 'RON' }}</h4>
+      <div class="col-md-2"></div>
+      <div class="col-md-3">
+        <h4>Total: {{total | currency: 'RON' }}</h4>
       </div>
     </div>
-  
+    <div class="row">
+      <div class="col-md-5"></div>
+      <div class="col-md-2"></div>
+      <div class="col-md-2"></div>
+      <div class="col-md-3">
+        <button class="btn" style="background-color:#ffc107;" (click)="goToCheckout()">Finalizeaza comanda</button>
+      </div>
     </div>
-  
+</div>
+<div *ngIf="!isViewable && !isCheckout" class="container">
+  <div clas="row">
+      <form>
+      
+        <div class="row">
+          <div class="col-md-7">
+            <h3>Adresa de livrare</h3>
+            <label for="fname"><i class="fa fa-user"></i> Nume</label>
+            <input type="text" id="fname" [(ngModel)]="firstName" name="firstName" placeholder="Ex: Popescu Ion">
+            <label for="email"><i class="fa fa-envelope"></i> Email</label>
+            <input type="text" id="email" [(ngModel)]="email" name="email" placeholder="ion.popescu@gmail.com">
+            <label for="adr"><i class="fas fa-map-marker-alt"></i> Adresa</label>
+            <input type="text" id="adr" [(ngModel)]="address" name="address" placeholder="Strada, numar,bloc">
+            <label for="city"><i class="far fa-building"></i> Oras</label>
+            <input type="text" id="city" [(ngModel)]="city" name="city" placeholder="Bucuresti">
+
+            <div class="row">
+              <div class="col-md-6">
+                <label for="state"><i class="fas fa-globe-europe"></i>Tara</label>
+                <input type="text" id="state" [(ngModel)]="state" name="state" placeholder="Romania">
+              </div>
+              <div class="col-md-6">
+                <label for="zip">Cod Postal</label>
+                <input type="text" id="zip" [(ngModel)]="zip" name="cod" placeholder="000000">
+              </div>
+            </div>
+          </div>
+          <div class="col-md-5">
+            <h4>Total de plata: {{total| currency: 'RON'}}</h4>
+            <label for="fname">Carduri acceptate</label>
+            <div class="icon-container">
+                <i class="fab fa-cc-visa emblem"></i>
+                <i class="fab fa-cc-amex emblem"></i>
+                <i class="fab fa-cc-mastercard emblem"></i>
+              
+            </div>
+            <label for="cname">Titular card</label>
+            <input type="text" id="cname" [(ngModel)]="cardname" name="card" placeholder="Poepscu Ion">
+            <label for="ccnum">Numar card</label>
+            <input type="text" id="ccnum" [(ngModel)]="cardnumber" name="card" placeholder="1111-2222-3333-4444">
+            <div class="row">
+              <div class="col-md-4">
+                  <label for="expmonth">Luna</label>
+                  <input type="text" id="expmonth" [(ngModel)]="expmonth" name="month" placeholder="03">
+              </div>
+              <div class="col-md-4">
+                <label for="expyear">An</label>
+                <input type="text" id="expyear" [(ngModel)]="expyear" name="year" placeholder="18">
+              </div>
+              <div class="col-md-4">
+                <label for="cvv">CVC</label>
+                <input type="text" id="cvv" [(ngModel)]="cvv" name="cvc" placeholder="352">
+              </div>
+            </div>
+          </div>          
+        </div>
+        <input (click)="onSubmit()" value="Plaseaza comanda" class="btn-order" style="text-align:center;">
+      </form>
+  </div>
+</div> 
+
+<div *ngIf="isCheckout" class="container" style="background-color:transparent; border:none;">
+  <div class="row">
+      <div class="col-md-3"></div>
+      <div class="col-md-6" style="background-color:#ffc107; border-radius:20px;">
+        <div class="messagebox">
+          <p>Va multumim!</p>
+        </div>
+      </div>
+      <div class="col-md-3"></div>
+  </div>
+</div>

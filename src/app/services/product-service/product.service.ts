@@ -19,4 +19,16 @@ export class ProductService {
   getProductById(wineId){
     return this.http.get('http://localhost:3000/wines/' + wineId);
   }
+
+  addProductToCart(product_id, user_id)
+  {
+    return this.http.post('http://localhost:3000/cart/add',user_id,product_id);
+  }
+  removeProductFromCart(user_id,product_id)
+  {
+    return this.http.post('http://localhost:3000/cart/delete',user_id,product_id);
+  }
+  getItemsFromCart(user_id){
+    return this.http.get('http://localhost:3000/cart/all/' + user_id);
+  }
 }
