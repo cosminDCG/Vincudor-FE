@@ -1,14 +1,10 @@
-
-import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
-
 import { Component, OnInit, HostListener } from '@angular/core';
 
 import { IProduct } from "../product/iproduct";
 import { Subject } from 'rxjs';
 import { OriginalSource } from 'webpack-sources';
 import { ProductService } from '../services/product-service/product.service';
-import { GlobalService } from '../services/global-service/global.service';
 
 import { GlobalService } from '../services/global-service/global.service';
 
@@ -41,40 +37,32 @@ export class CartComponent implements OnInit {
   public user :any;
   constructor(private global:GlobalService,
     private productService:ProductService) {
-    
+     /* this.products = [
+        {id:1, wine_name:'Purcari Rose', description:'Aceasta este o descriere', price:20,quantity:1},
+        {id:2, wine_name:'Purcari Rose', description:'Aceasta este o descriere', price:40,quantity:1}
+      ]; */
   }
-
-  ngOnInit() {
-    this.user = this.global.currentUser;
-    console.log("Mama");
-    this.productService.getItemsFromCart(this.user.user_id).subscribe((res:any)=>{
-      console.log(res.length);
-    }, (err)=>{
-
-    });
-
-
-  public user:any;
-
   
-  constructor(private global:GlobalService) {
-    this.products = [
-                      {id:1, wine_name:'Purcari Rose', description:'Aceasta este o descriere', price:20,quantity:1},
-                      {id:2, wine_name:'Purcari Rose', description:'Aceasta este o descriere', price:40,quantity:1}
-                    ];
-  }
-
   ngOnInit() {
     if(localStorage.getItem('crUser') && this.global.currentUser == null) {
       var aux = localStorage.getItem('crUser');
       this.global.currentUser = JSON.parse(aux);
     }
-    this.user = this.global.currentUser;
 
-      this.totalPrice();
-      this.isViewable = true;
+    this.user = this.global.currentUser;
+    console.log("User ID: " + this.user.user_id);
+    this.productService.getItemsFromCart(this.user.user_id).subscribe((res:any)=>{
+      this.products = res.cart;
+      console.log(this.products);
+      this.totalPrice();  
+    }, (err)=>{
+      
+    });
+    
+    this.isViewable = true;
       this.isCheckout = false;
-  }
+      
+    }
 
   @HostListener('window:beforeunload') saveUser() {
     localStorage.setItem('crUser', JSON.stringify(this.global.currentUser));
@@ -85,15 +73,24 @@ export class CartComponent implements OnInit {
   }
 
   delpopup(pid){
-    console.log(pid);
+  
     for(var i=0;i<this.products.length;i++){
-      if(this.products[i].id === pid)
+      if(this.products[i].wine_id === pid)
       {  
         this.products.splice(i,1);
+        var cart = {
+          user_id:    this.user.user_id,
+          product_id: pid
+        }
+        console.log(cart);
+        this.productService.removeProductFromCart(cart).subscribe((res:any)=>{
+          
+        }, (err)=>{
+    
+        });
       }           
     }
     this.totalPrice();
-    console.log(this.products);
   }
 
 
@@ -105,9 +102,9 @@ export class CartComponent implements OnInit {
   }
 
   add(pid){
-    console.log(pid);
+   
     for(var i=0;i<this.products.length;i++){
-      if(this.products[i].id === pid)
+      if(this.products[i].wine_id === pid)
       {  
         this.products[i].quantity += 1;
       }           
@@ -117,16 +114,16 @@ export class CartComponent implements OnInit {
   }
 
   del(pid){
-    console.log(pid);
+   
     for(var i=0;i<this.products.length;i++){
-      if(this.products[i].id === pid)
+      if(this.products[i].wine_id === pid)
       {
         if(this.products[i].quantity > 1)
         {
           this.products[i].quantity -= 1;
         }  
         else {
-          this.delpopup(this.products[i].id);
+          this.delpopup(this.products[i].wine_id);
         }
       }           
     }
@@ -139,10 +136,30 @@ export class CartComponent implements OnInit {
   }
 
   onSubmit() {
-    var order = {
-      first_name : this.firstName,
-      city : this.city
+    var auxProduct:any[] = [];
+    let  i:number;
+    for(i = 0; i < this.products.length; i++)
+    {
+      var orderDetails = {
+        wine_id: this.products[i].wine_id,
+        quantity: this.products[i].quantity
+      }
+      auxProduct.push(orderDetails);
     }
+    var finalAdress: string;
+    finalAdress = this.address + " ; " + this.city + " ; " + this.state + " ; " + this.zip;
+
+    var order = {
+      products: auxProduct,
+      adresa: finalAdress,
+      user_id: this.user.user_id
+    }
+    this.productService.addAnOrder(order).subscribe((res:any)=>{
+          
+    }, (err)=>{
+
+    });
+
     this.isCheckout = true; 
   }
 

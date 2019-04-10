@@ -19,9 +19,9 @@ export class DashboardComponent implements OnInit {
               private router:Router) { }
 
   ngOnInit() {
-    if(localStorage.getItem('crUser') && this.global.currentUser == null) {
+    if(localStorage.getItem('crUser') && this.globals.currentUser == null) {
       var aux = localStorage.getItem('crUser');
-      this.global.currentUser = JSON.parse(aux);
+      this.globals.currentUser = JSON.parse(aux);
     }
 
     this.user = this.globals.currentUser;
@@ -35,7 +35,7 @@ export class DashboardComponent implements OnInit {
   }
 
   @HostListener('window:beforeunload') saveUser() {
-    localStorage.setItem('crUser', JSON.stringify(this.global.currentUser));
+    localStorage.setItem('crUser', JSON.stringify(this.globals.currentUser));
   }
 
   seeItemDetails(item){
@@ -44,9 +44,17 @@ export class DashboardComponent implements OnInit {
   }
 
   addToCart(index:number) {
+    var cart = {
+      user_id: this.user.user_id,
+      product_id: index
+    }
     console.log("id product" + index);
     console.log("Id utilizator" + this.user.user_id);
-    this.productService.addProductToCart(index,this.user.user_id);
+    this.productService.addProductToCart(cart).subscribe((res:any)=>{
+
+    }, (err)=>{
+
+    });
     console.log("A mers");
     
   }
