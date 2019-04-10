@@ -62,6 +62,10 @@ import { MyProductsComponent } from './my-products/my-products.component';
       {
         path: 'product/:id',
         component: ProductComponent
+      },
+      {
+        path: 'user/products',
+        component: MyProductsComponent
       }
     ])
   ],

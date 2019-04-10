@@ -36,4 +36,12 @@ export class ProductService {
   {
     return this.http.post('http://localhost:3000/order/new',order);
   }
+
+  getWineByProducerId(user_id){
+    return this.http.get('http://localhost:3000/wines/producer/' + user_id); 
+  }
+
+  getWineDetailsById(wine_id){
+    return this.http.get('http://localhost:3000/wines/details/' + wine_id);
+  }
 }

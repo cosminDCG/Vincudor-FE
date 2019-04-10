@@ -1,0 +1,20 @@
+.prod-card{
+    border: 0;
+    border-radius: 1rem;
+    box-shadow: 2px 0px 8px black;
+    overflow: hidden;
+    margin-top: 10%;
+    margin-bottom: 10%;
+    margin-left: 5%;
+    margin-right: 5%;
+    background-color: white;
+}
+
+thead{
+    background-color: rgba(211, 175, 55, 0.753);
+}
+
+.delete-button{
+    color: red;
+    background-color: white !important;
+}

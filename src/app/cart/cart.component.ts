@@ -7,6 +7,7 @@ import { OriginalSource } from 'webpack-sources';
 import { ProductService } from '../services/product-service/product.service';
 
 import { GlobalService } from '../services/global-service/global.service';
+import { totalmem } from 'os';
 
 @Component({
 selector: 'app-cart',
@@ -99,6 +100,7 @@ export class CartComponent implements OnInit {
     for(var i=0;i<this.products.length;i++){
       this.total += (this.products[i].price * this.products[i].quantity);
     }
+    return this.total;
   }
 
   add(item){
