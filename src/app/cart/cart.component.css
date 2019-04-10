@@ -11,6 +11,23 @@
   width:100%;
 }
 
+.fas{
+  cursor: pointer;
+  margin-top: 5%;
+  margin-left: 3%;
+  margin-right: 3%;
+  font-size: 120%;
+}
+
+.qty-span{
+  margin-left: 30%;
+}
+
+.qty-input{
+  width: 30%;
+}
+
+
 .plus-minus-input {
   align-items: center;
 
