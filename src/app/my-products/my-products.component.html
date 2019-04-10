@@ -21,7 +21,7 @@
               <strong>{{ i+1 }}</strong>
             </td>
 
-            <td class="text-center" data-th="Product">
+            <td (click)="getWine(item)" data-toggle="modal" data-target=".wineModal" class="text-center" data-th="Product">
               <strong>{{ item.wine_name }}</strong>
             </td>
 
@@ -42,3 +42,109 @@
     </div>
   </div>
 </div>
+
+<div class="modal fade wineModal" tabindex="-1" role="dialog" aria-labelledby="wineModal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title">{{ currentWine.wine_name }}</h3>
+        </div>
+
+        <div class="modal-body">
+          <div class="col">
+            <div class="row">
+              <div class="col-md-4 text-center">
+                <h5><strong>Type</strong></h5>
+                <strong>{{ currentWine.type }}</strong>
+              </div>
+              <div class="col-md-4 text-center">
+                <h5><strong>Residual Sugar</strong></h5>
+                <strong>{{ currentWine.residual_sugar }}</strong>
+              </div>
+              <div class="col-md-4 text-center">
+                <h5><strong>Density</strong></h5>
+                <strong>{{ currentWine.density }}</strong>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-4 text-center">
+                <h5><strong>Fixed Acidity</strong></h5>
+                <strong>{{ currentWine.fixed_acidity }}</strong>
+              </div>
+              <div class="col-md-4 text-center">
+                <h5><strong>Chlorides</strong></h5>
+                <strong>{{ currentWine.chlorides }}</strong>
+              </div>
+              <div class="col-md-4 text-center">
+                <h5><strong>pH</strong></h5>
+                <strong>{{ currentWine.pH }}</strong>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-4 text-center">
+                <h5><strong>Volatile Acidity</strong></h5>
+                <strong>{{ currentWine.volatile_acidity }}</strong>
+              </div>
+              <div class="col-md-4 text-center">
+                <h5><strong>Free Sulfur Dioxide</strong></h5>
+                <strong>{{ currentWine.free_sulfur_dioxide }}</strong>
+              </div>
+              <div class="col-md-4 text-center">
+                <h5><strong>Sulphates</strong></h5>
+                <strong>{{ currentWine.sulphates }}</strong>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-4 text-center">
+                <h5><strong>Citric Acid</strong></h5>
+                <strong>{{ currentWine.citric_acid }}</strong>
+              </div>
+              <div class="col-md-4 text-center">
+                <h5><strong>Total Sulfur Dioxide</strong></h5>
+                <strong>{{ currentWine.total_sulfur_dioxide }}</strong>
+              </div>
+              <div class="col-md-4 text-center">
+                <h5><strong>Alcohol</strong></h5>
+                <strong>{{ currentWine.alcohol }}</strong>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-4 text-center">
+                <h5><strong>Quality</strong></h5>
+                <strong>{{ currentWine.quality }}</strong>
+              </div>
+              <div class="col-md-4 text-center">
+                <h5><strong>Price</strong></h5>
+                <strong>{{ currentWine.price }} Lei/Liter</strong>
+              </div>
+              <div class="col-md-4 text-center">
+                <h5><strong>Color</strong></h5>
+                <strong>{{ currentWine.color }}</strong>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-4 text-center">
+                <h5><strong>Quantity</strong></h5>
+                <strong>{{ currentWine.quantity }}</strong>
+              </div>
+              <div class="col-md-8 text-center">
+                <h5><strong>Wine Description</strong></h5>
+                <strong>{{ currentWine.description }}</strong>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="modal-footer">
+            <button type="button" class="btn btn-primary">Edit</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+      </div>
+    </div>
+  </div>

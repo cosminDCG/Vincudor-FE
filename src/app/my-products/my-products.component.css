@@ -18,3 +18,17 @@ thead{
     color: red;
     background-color: white !important;
 }
+
+.modal-header, .modal-footer{
+    background-color: #ffc107;
+}
+
+h5{
+    width: 100% !important;
+    border-bottom: 3px solid #ffc107;
+    border-radius: 10%;
+}
+
+.modal-body .row{
+    margin-top: 5%;
+}

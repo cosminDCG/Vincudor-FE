@@ -11,6 +11,7 @@ import { GlobalService } from '../services/global-service/global.service';
 export class MyProductsComponent implements OnInit {
 
   public items: any;
+  public currentWine: any;
 
   constructor(private global:GlobalService,
               private productService:ProductService) { }
@@ -29,6 +30,15 @@ export class MyProductsComponent implements OnInit {
 
   @HostListener('window:beforeunload') saveUser() {
     localStorage.setItem('crUser', JSON.stringify(this.global.currentUser));
+  }
+
+  getWine(item){
+    this.productService.getWineDetailsById(item.wine_id).subscribe((res:any)=>{
+      this.currentWine = res.wine[0];
+      console.log(this.currentWine);
+    }, (err)=>{
+
+    });
   }
 
 }
