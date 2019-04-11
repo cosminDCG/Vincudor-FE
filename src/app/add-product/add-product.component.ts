@@ -1,7 +1,9 @@
 import { Component, OnInit, HostListener } from '@angular/core';
+import { Router } from "@angular/router";
+
 import { GlobalService } from '../services/global-service/global.service';
 import { ProductService } from '../services/product-service/product.service';
-import { IfStmt } from '@angular/compiler';
+
 
 @Component({
   selector: 'app-add-product',
@@ -32,7 +34,8 @@ export class AddProductComponent implements OnInit {
   public user: any;
 
   constructor(private globals:GlobalService,
-              private productService:ProductService) { }
+              private productService:ProductService,
+              private router:Router) { }
 
   ngOnInit() {
     this.user = this.globals.currentUser;
@@ -123,10 +126,12 @@ export class AddProductComponent implements OnInit {
     }
 
     this.productService.addProduct(product).subscribe((res:any)=>{
-
+      
     }, (err)=>{
 
     });
+
+    this.router.navigate(['/dashboard']);
   }
   setPrice(){
     if(this.quality == 'Medium')

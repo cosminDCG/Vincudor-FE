@@ -66,4 +66,8 @@ export class ProductService {
   calculateQuality(wine){
     return this.http.post('http://localhost:3000/wines/quality', wine);
   }
+
+  editWine(wine){
+    return this.http.post('http://localhost:3000/wines/edit', wine);
+  }
 }
