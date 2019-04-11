@@ -24,10 +24,12 @@ export class ProductService {
   {
     return this.http.post('http://localhost:3000/cart/add',cart);
   }
+
   removeProductFromCart(cart)
   {
     return this.http.post('http://localhost:3000/cart/delete',cart);
   }
+
   getItemsFromCart(user_id){
     return this.http.get('http://localhost:3000/cart/all/' + user_id);
   }
@@ -37,6 +39,18 @@ export class ProductService {
     return this.http.post('http://localhost:3000/order/new',order);
   }
 
+  addCommentForAProduct(comment) {
+    return this.http.post('http://localhost:3000/commment/add', comment);
+  }
+
+  deleteCommentForAProduct(comment) {
+    return this.http.post('http://localhost:3000/comment/delete', comment);
+  }
+
+  editCommentForAProduct(comment) {
+    return this.http.post('http://localhost:3000/comment/edit',comment);
+
+  }
   getWineByProducerId(user_id){
     return this.http.get('http://localhost:3000/wines/producer/' + user_id); 
   }
