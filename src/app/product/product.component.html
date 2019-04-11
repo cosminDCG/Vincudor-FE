@@ -96,7 +96,7 @@
                             <span style="font-size:10px;">{{item.comment_date}}</span>
                             <div *ngIf="editMode && item.user_id == this.global.currentUser.user_id" >
                                 <textarea id="textComment" class="commentArea" rows="10" name="editedComment" [(ngModel)]="editedComment"></textarea>
-                                <button class="btn btn-primary" (click)="saveChanges(editedComment)">Save changes</button>
+                                <button class="btn btn-primary" (click)="saveChanges(item)">Save changes</button>
                             </div>
                         </div>
                         <div *ngIf="item.user_id == this.global.currentUser.user_id" class="col-md-4">

@@ -107,17 +107,32 @@ export class ProductComponent implements OnInit {
   enableEditMode() {
     this.editMode = 1;
   }
-  editComment(text:string) {
+  disableEditMode() {
+    this.editMode = 0;
+  }
+
+  editComment(item) {
     for(var i = 0; i < this.commentList.length; i++)
     {
-      if(text === this.commentList[i].comment_text)
+      if(item.comment === this.commentList[i].comment)
       {
         this.oldIndex = i;
-        this.editedComment = text;
+        this.editedComment = item.comment;
         this.enableEditMode();
 
       }
     }
+  }
+
+  saveChanges(item) {
+    item.comment = this.editedComment;
+    this.disableEditMode();
+    
+    this.productService.editCommentForAProduct(item).subscribe((res:any) => {
+      console.log("l-am editat");
+    }, (err) => {
+
+    });
   }
   
 }
