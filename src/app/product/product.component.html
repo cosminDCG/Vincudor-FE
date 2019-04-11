@@ -94,11 +94,14 @@
                         <div class="col-md-7">
                             <h4>{{item.user_first_name}} {{item.user_last_name}}</h4>
                             <p *ngIf="!editMode">{{item.comment_text}}</p>
-                            <textarea *ngIf="editMode" id="textComment" class="commentArea" rows="10" name="commentContent" [(ngModel)]="commentContent" (value)="item.comment_text"></textarea>
+                            <div *ngIf="editMode && item.user_id == this.global.currentUser.user_id" >
+                                <textarea id="textComment" class="commentArea" rows="10" name="editedComment" [(ngModel)]="editedComment"></textarea>
+                                <button class="btn btn-primary" (click)="saveChanges(editedComment)">Save changes</button>
+                            </div>
                         </div>
                         <div *ngIf="item.user_id == this.global.currentUser.user_id" class="col-md-4">
-                            <button class="btn btn-warning" style="margin-right:10px;" (click)="editComment(item.comment_text)"><i class="far fa-edit"></i></button>
-                            <button class="btn btn-danger" (click)="deleteComment(item.comment_text)"><i class="fas fa-trash-alt"></i></button>
+                            <button class="btn btn-warning" style="margin-right:10px;" (click)="editComment(item)"><i class="far fa-edit"></i></button>
+                            <button class="btn btn-danger" (click)="deleteComment(item)"><i class="fas fa-trash-alt"></i></button>
                         </div>
                     </div>
                     <div class="row commentRow">

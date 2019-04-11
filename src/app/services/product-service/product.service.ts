@@ -36,4 +36,16 @@ export class ProductService {
   {
     return this.http.post('http://localhost:3000/order/new',order);
   }
+
+  addCommentForAProduct(comment) {
+    return this.http.post('http:localhost:3000/comment/add', comment);
+  }
+
+  deleteCommentForAProduct(comment) {
+    return this.http.post('http://localhost:3000/comment/delete', comment);
+  }
+
+  editCommentForAProduct(comment) {
+    return this.http.post('http://localhost:3000/comment/edit',comment);
+  }
 }

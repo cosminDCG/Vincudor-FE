@@ -2,6 +2,7 @@ import { Component, OnInit, HostListener } from '@angular/core';
 
 import { GlobalService } from '../services/global-service/global.service';
 import { ProductService } from '../services/product-service/product.service';
+import { SSL_OP_SSLEAY_080_CLIENT_DH_BUG } from 'constants';
 
 @Component({
   selector: 'app-product',
@@ -10,6 +11,7 @@ import { ProductService } from '../services/product-service/product.service';
 })
 export class ProductComponent implements OnInit {
 
+  public editedComment:any;
   public currentItem: any;
   public quantity = 0;
   public commentList = [
@@ -23,6 +25,7 @@ export class ProductComponent implements OnInit {
   public commentContent: string;
   public user: any;
   public editMode = 0;
+  public oldIndex: any;
 
   constructor(private global:GlobalService,
               private productService:ProductService) { }
@@ -70,8 +73,8 @@ export class ProductComponent implements OnInit {
     }
     this.commentList.push(comment);
     console.log(this.commentList.length);
+    this.commentContent="";
   } 
-  
   deleteComment(text:string) {
     
     for(var i = 0; i < this.commentList.length; i++)
@@ -88,6 +91,17 @@ export class ProductComponent implements OnInit {
   enableEditMode() {
     this.editMode = 1;
   }
+  editComment(text:string) {
+    for(var i = 0; i < this.commentList.length; i++)
+    {
+      if(text === this.commentList[i].comment_text)
+      {
+        this.oldIndex = i;
+        this.editedComment = text;
+        this.enableEditMode();
 
+      }
+    }
+  }
   
 }
