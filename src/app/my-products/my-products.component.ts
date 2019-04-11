@@ -11,7 +11,11 @@ import { GlobalService } from '../services/global-service/global.service';
 export class MyProductsComponent implements OnInit {
 
   public items: any;
-  public currentWine: any;
+  public currentWine = {
+    wine_name : '',
+    type : ''
+  };
+  public editMode = 0;
 
   constructor(private global:GlobalService,
               private productService:ProductService) { }
@@ -39,6 +43,23 @@ export class MyProductsComponent implements OnInit {
     }, (err)=>{
 
     });
+  }
+
+  deleteProduct(item, index){
+    this.productService.deleteWine(item).subscribe((res:any)=>{
+      
+    }, (err)=>{
+
+    });
+    this.items.splice(index,1);
+  }
+
+  enableEditMode(){
+    this.editMode = 1;
+  }
+
+  saveChanges(){
+    this.editMode = 0;
   }
 
 }

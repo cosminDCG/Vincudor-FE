@@ -44,4 +44,12 @@ export class ProductService {
   getWineDetailsById(wine_id){
     return this.http.get('http://localhost:3000/wines/details/' + wine_id);
   }
+
+  deleteWine(wine){
+    return this.http.post('http://localhost:3000/wine/delete', wine);
+  }
+
+  calculateQuality(wine){
+    return this.http.post('http://localhost:3000/wines/quality', wine);
+  }
 }

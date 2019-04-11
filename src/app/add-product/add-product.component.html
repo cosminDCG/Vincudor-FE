@@ -91,7 +91,7 @@
               </div>
               <div class="col-md-4">
                   <strong>Price</strong>
-                  <input [(ngModel)]="price" class="form-control">
+                  <input (keyup)='setPrice($event)' [(ngModel)]="price" class="form-control">
               </div>
               <div class="col-md-4">
                   <strong>Quantity</strong><br>
@@ -116,7 +116,7 @@
                     <a class="dropdown-item" (click)="chooseColor('Rose')">Rose</a>
                     <a class="dropdown-item" (click)="chooseColor('Red')">Red</a>
                   </div>
-                </div>
+                </div>  
                 </div>
               <div class="col-md-8">
                 <strong>Description</strong>
