@@ -37,6 +37,7 @@ export class ProductService {
     return this.http.post('http://localhost:3000/order/new',order);
   }
 
+
   addCommentForAProduct(comment) {
     return this.http.post('http:localhost:3000/comment/add', comment);
   }
@@ -47,5 +48,12 @@ export class ProductService {
 
   editCommentForAProduct(comment) {
     return this.http.post('http://localhost:3000/comment/edit',comment);
+
+  getWineByProducerId(user_id){
+    return this.http.get('http://localhost:3000/wines/producer/' + user_id); 
+  }
+
+  getWineDetailsById(wine_id){
+    return this.http.get('http://localhost:3000/wines/details/' + wine_id);
   }
 }

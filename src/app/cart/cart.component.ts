@@ -7,6 +7,7 @@ import { OriginalSource } from 'webpack-sources';
 import { ProductService } from '../services/product-service/product.service';
 
 import { GlobalService } from '../services/global-service/global.service';
+import { totalmem } from 'os';
 
 @Component({
 selector: 'app-cart',
@@ -53,7 +54,7 @@ export class CartComponent implements OnInit {
     console.log("User ID: " + this.user.user_id);
     this.productService.getItemsFromCart(this.user.user_id).subscribe((res:any)=>{
       this.products = res.cart;
-      console.log(this.products);
+      this.products.map((item)=>item.quantity = 1);
       this.totalPrice();  
     }, (err)=>{
       
@@ -99,34 +100,38 @@ export class CartComponent implements OnInit {
     for(var i=0;i<this.products.length;i++){
       this.total += (this.products[i].price * this.products[i].quantity);
     }
+    return this.total;
   }
 
-  add(pid){
+  add(item){
    
-    for(var i=0;i<this.products.length;i++){
-      if(this.products[i].wine_id === pid)
-      {  
-        this.products[i].quantity += 1;
-      }           
-    }
+    // for(var i=0;i<this.products.length;i++){
+    //   if(this.products[i].wine_id === pid)
+    //   {  
+    //     this.products[i].quantity += 1;
+    //   }           
+    // }
+    item.quantity++;
     this.totalPrice();
     console.log(this.products);
   }
 
-  del(pid){
+  del(item){
    
-    for(var i=0;i<this.products.length;i++){
-      if(this.products[i].wine_id === pid)
-      {
-        if(this.products[i].quantity > 1)
-        {
-          this.products[i].quantity -= 1;
-        }  
-        else {
-          this.delpopup(this.products[i].wine_id);
-        }
-      }           
-    }
+    // for(var i=0;i<this.products.length;i++){
+    //   if(this.products[i].wine_id === pid)
+    //   {
+    //     if(this.products[i].quantity > 1)
+    //     {
+    //       this.products[i].quantity -= 1;
+    //     }  
+    //     else {
+    //       this.delpopup(this.products[i].wine_id);
+    //     }
+    //   }           
+    // }
+    if(item.quantity>0)
+      item.quantity--;
     this.totalPrice();
     console.log(this.products);
   }

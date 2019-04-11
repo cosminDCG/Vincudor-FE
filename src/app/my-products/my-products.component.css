@@ -1,0 +1,34 @@
+.prod-card{
+    border: 0;
+    border-radius: 1rem;
+    box-shadow: 2px 0px 8px black;
+    overflow: hidden;
+    margin-top: 10%;
+    margin-bottom: 10%;
+    margin-left: 5%;
+    margin-right: 5%;
+    background-color: white;
+}
+
+thead{
+    background-color: rgba(211, 175, 55, 0.753);
+}
+
+.delete-button{
+    color: red;
+    background-color: white !important;
+}
+
+.modal-header, .modal-footer{
+    background-color: #ffc107;
+}
+
+h5{
+    width: 100% !important;
+    border-bottom: 3px solid #ffc107;
+    border-radius: 10%;
+}
+
+.modal-body .row{
+    margin-top: 5%;
+}
