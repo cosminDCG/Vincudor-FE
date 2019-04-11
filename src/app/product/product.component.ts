@@ -9,18 +9,21 @@ import { SSL_OP_SSLEAY_080_CLIENT_DH_BUG } from 'constants';
   templateUrl: './product.component.html',
   styleUrls: ['./product.component.css']
 })
+
 export class ProductComponent implements OnInit {
 
   public editedComment:any;
   public currentItem: any;
   public quantity = 0;
-  public commentList = [
+ /* public commentList = [
                         { user_id:1,
                           user_first_name:"Madalin",
                           user_last_name:"Benchia",
                           comment_text:"Aceste este un comentariu text"
                         }
-  ];
+  ];*/
+
+  public commentList: any;
   public isSpecificUser = false;
   public commentContent: string;
   public user: any;
@@ -45,6 +48,8 @@ export class ProductComponent implements OnInit {
 
     this.productService.getProductById(this.global.currentProductId).subscribe((res:any)=>{
       this.currentItem = res.wine;
+      this.commentList = res.wine.comments;
+      //console.log("Res: " + res.wine.comments);
     }, (err)=>{
 
     });
@@ -66,26 +71,37 @@ export class ProductComponent implements OnInit {
   }
   addComment() {
     var comment = {
+                    //comment_id: 1,
                     user_id: this.user.user_id,
-                    user_first_name: this.user.first_name,
-                    user_last_name: this.user.last_name,
-                    comment_text: this.commentContent
+                    wine_id: this.currentItem.wine_id,
+                    comment: this.commentContent
     }
-    this.commentList.push(comment);
-    console.log(this.commentList.length);
+
+    if(comment.comment !== "")
+        this.productService.addCommentForAProduct(comment).subscribe((res:any) => {
+            console.log("l-am introdous");
+        }, (err) => {
+        });
+    //this.commentList.push(comment);
+    console.log(comment);
     this.commentContent="";
   } 
-  deleteComment(text:string) {
-    
+
+  deleteComment(item) {
     for(var i = 0; i < this.commentList.length; i++)
     {
       
-      if(text === this.commentList[i].comment_text)
+      if(item.comment === this.commentList[i].comment)
       {
-        
+        console.log("true")
         this.commentList.splice(i,1);
       }
     }
+
+    this.productService.deleteCommentForAProduct(item).subscribe((res:any) => {
+        console.log("L-am sters");
+    }, (err) => {
+    });
   }
 
   enableEditMode() {
