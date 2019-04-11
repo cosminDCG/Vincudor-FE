@@ -49,6 +49,7 @@ h5{
 
 .info-prod .row{
     margin-top: 3%;
+
 }
 
 .nav-pills{
@@ -98,4 +99,8 @@ h5{
 
 .allComments {
     margin-bottom:50px;
+}
+
+.commRow {
+    margin-top:5%;
 }

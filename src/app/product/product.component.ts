@@ -13,6 +13,7 @@ import { SSL_OP_SSLEAY_080_CLIENT_DH_BUG } from 'constants';
 export class ProductComponent implements OnInit {
 
   public editedComment:any;
+  public editedSubComment:any;
   public currentItem: any;
   public quantity = 0;
  /* public commentList = [
@@ -28,7 +29,10 @@ export class ProductComponent implements OnInit {
   public commentContent: string;
   public user: any;
   public editMode = 0;
+  public editModeSubcomm = 0;
   public oldIndex: any;
+  public repliedMode = 0;
+  public replyComment:any;
 
   constructor(private global:GlobalService,
               private productService:ProductService) { }
@@ -53,6 +57,8 @@ export class ProductComponent implements OnInit {
     }, (err)=>{
 
     });
+
+    console.log(this.commentList.length);
   }
 
   @HostListener('window:beforeunload') saveUser() {
@@ -85,8 +91,10 @@ export class ProductComponent implements OnInit {
     //this.commentList.push(comment);
     console.log(comment);
     this.commentContent="";
+    this.disableReplyMode();
+    this.commentList.push(comment);
   } 
-
+  
   deleteComment(item) {
     for(var i = 0; i < this.commentList.length; i++)
     {
@@ -104,26 +112,44 @@ export class ProductComponent implements OnInit {
     });
   }
 
-  enableEditMode() {
+  enableEditMode(item) {
     this.editMode = 1;
-  }
-  disableEditMode() {
-    this.editMode = 0;
+    this.oldIndex = item.comment_id;
+    this.editedComment = item.comment;
+    console.log(item.comment_id);
   }
 
-  editComment(item) {
+  enableEditModeSubcomm(item) {
+    this.editModeSubcomm = 1;
+    this.oldIndex = item.comment_id;
+    this.editedSubComment = item.comment;
+    console.log(item.replied_to);
+  }
+
+ /* editComment(item) {
     for(var i = 0; i < this.commentList.length; i++)
     {
       if(item.comment === this.commentList[i].comment)
       {
-        this.oldIndex = i;
+        //this.oldIndex = item.comment_id;
         this.editedComment = item.comment;
-        this.enableEditMode();
+        this.enableEditMode(item);
+      }
+    }
+  }*/
 
+  /*
+  editSubComment(item) {
+    for(var i = 0; i < this.commentList.length;i++)
+    {
+      if(item.comment === this.commentList[i].comment)
+      {
+        this.editedSubComment = item.comment;
+        this.enableEditModeSubcomm(item);
       }
     }
   }
-
+*/
   saveChanges(item) {
     item.comment = this.editedComment;
     this.disableEditMode();
@@ -131,8 +157,56 @@ export class ProductComponent implements OnInit {
     this.productService.editCommentForAProduct(item).subscribe((res:any) => {
       console.log("l-am editat");
     }, (err) => {
-
     });
   }
+
+  saveChangesSubComm(item) {
+    item.comment = this.editedSubComment;
+    this.disableEditModeSubcomm();
+    
+    this.productService.editCommentForAProduct(item).subscribe((res:any) => {
+      console.log("l-am editat");
+    }, (err) => {
+    });
+  }
+
+  disableEditMode() {
+    this.editMode = 0 ;
+  }
+  disableEditModeSubcomm() {
+    this.editModeSubcomm = 0 ;
+  }
+  disableReplyMode() {
+    this.repliedMode= 0;
+  }
+  enableReplyMode(item) {
+    this.repliedMode = 1;
+    this.replyComment = item.comment_id;
+
+    console.log(this.repliedMode);
+  }
+  addReplyComment(item) {
+      this.enableReplyMode(item);
+      var comment = {
+        //comment_id: 1,
+        user_id: this.user.user_id,
+        wine_id: this.currentItem.wine_id,
+        comment: this.commentContent,
+        replied_to: item.comment_id
+      }
+
+      if(comment.comment !== "")
+      this.productService.addCommentForAProduct(comment).subscribe((res:any) => {
+          console.log("l-am introdous");
+      }, (err) => {
+      });
+
+      console.log(comment);
+      this.commentContent="";
+      this.disableReplyMode();
+      this.commentList.push(comment);
+
+  }
+
   
 }
