@@ -1,4 +1,5 @@
 import { Component, OnInit, HostListener } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { ProductService } from '../services/product-service/product.service';
 import { GlobalService } from '../services/global-service/global.service';
@@ -13,12 +14,16 @@ export class MyProductsComponent implements OnInit {
   public items: any;
   public currentWine = {
     wine_name : '',
-    type : ''
+    type : '',
+    color: '',
+    quality: '',
+    price: '0'
   };
   public editMode = 0;
 
   constructor(private global:GlobalService,
-              private productService:ProductService) { }
+              private productService:ProductService,
+              private router:Router) { }
 
   ngOnInit() {
     if(localStorage.getItem('crUser') && this.global.currentUser == null) {
@@ -59,7 +64,55 @@ export class MyProductsComponent implements OnInit {
   }
 
   saveChanges(){
+    this.productService.editWine(this.currentWine).subscribe((res:any)=>{
+      
+    }, (err)=>{
+
+    });
     this.editMode = 0;
+    window.location.reload();
   }
 
+  chooseType(option){
+    this.currentWine.type = option;
+  }
+
+  chooseColor(option){
+    this.currentWine.color = option;
+  }
+
+  changeQuality($event){
+    this.productService.calculateQuality(this.currentWine).subscribe((res:any)=>{
+      if(res.quality == 1)
+        this.currentWine.quality = 'Medium';
+        else if(res.quality == 2)
+              this.currentWine.quality = 'Poor';
+                  else this.currentWine.quality = 'High';
+    }, (err)=>{
+
+    })
+  }
+
+  setPrice(){
+    if(this.currentWine.quality == 'Medium')
+      {
+        if(parseFloat(this.currentWine.price) > 15 || parseFloat(this.currentWine.price) < 10)
+          this.currentWine.price = '';
+      }
+
+      if(this.currentWine.quality == 'Poor')
+      {
+        if(parseFloat(this.currentWine.price) > 9 || parseFloat(this.currentWine.price) < 5)
+          this.currentWine.price = '';
+      }
+
+      if(this.currentWine.quality == 'High')
+      {
+        if(parseFloat(this.currentWine.price) > 20 || parseFloat(this.currentWine.price) < 15)
+          this.currentWine.price = '';
+      }
+
+      if(parseFloat(this.currentWine.price) < 0)
+        this.currentWine.price = '';
+  }
 }
