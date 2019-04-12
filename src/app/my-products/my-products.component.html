@@ -61,7 +61,6 @@
                     {{ currentWine.type }}
                    </button>
                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                     <a class="dropdown-item" (click)="chooseType('None')">None</a>
                      <a class="dropdown-item" (click)="chooseType('Dry')">Dry</a>
                      <a class="dropdown-item" (click)="chooseType('Semi-Dry')">Semi-Dry</a>
                      <a class="dropdown-item" (click)="chooseType('Sweet')">Sweet</a>
@@ -71,12 +70,12 @@
               <div class="col-md-4 text-center">
                 <h5><strong>Residual Sugar</strong></h5>
                 <strong *ngIf='!editMode'>{{ currentWine.residual_sugar }}</strong>
-                <input *ngIf='editMode' [(ngModel)]='currentWine.residual_sugar' class="form-control">
+                <input (keyup)='changeQuality($event)' *ngIf='editMode' [(ngModel)]='currentWine.residual_sugar' class="form-control">
               </div>
               <div class="col-md-4 text-center">
                 <h5><strong>Density</strong></h5>
                 <strong *ngIf='!editMode'>{{ currentWine.density }}</strong>
-                <input *ngIf='editMode' [(ngModel)]='currentWine.density' class="form-control">
+                <input (keyup)='changeQuality($event)' *ngIf='editMode' [(ngModel)]='currentWine.density' class="form-control">
               </div>
             </div>
 
@@ -84,17 +83,17 @@
               <div class="col-md-4 text-center">
                 <h5><strong>Fixed Acidity</strong></h5>
                 <strong *ngIf='!editMode'>{{ currentWine.fixed_acidity }}</strong>
-                <input *ngIf='editMode' [(ngModel)]='currentWine.fixed_acidity' class="form-control">
+                <input (keyup)='changeQuality($event)' *ngIf='editMode' [(ngModel)]='currentWine.fixed_acidity' class="form-control">
               </div>
               <div class="col-md-4 text-center">
                 <h5><strong>Chlorides</strong></h5>
                 <strong *ngIf='!editMode'>{{ currentWine.chlorides }}</strong>
-                <input *ngIf='editMode' [(ngModel)]='currentWine.chlorides' class="form-control">
+                <input (keyup)='changeQuality($event)' *ngIf='editMode' [(ngModel)]='currentWine.chlorides' class="form-control">
               </div>
               <div class="col-md-4 text-center">
                 <h5><strong>pH</strong></h5>
                 <strong *ngIf='!editMode'>{{ currentWine.pH }}</strong>
-                <input *ngIf='editMode' [(ngModel)]='currentWine.pH' class="form-control">
+                <input (keyup)='changeQuality($event)' *ngIf='editMode' [(ngModel)]='currentWine.pH' class="form-control">
               </div>
             </div>
 
@@ -102,17 +101,17 @@
               <div class="col-md-4 text-center">
                 <h5><strong>Volatile Acidity</strong></h5>
                 <strong *ngIf='!editMode'>{{ currentWine.volatile_acidity }}</strong>
-                <input *ngIf='editMode' [(ngModel)]='currentWine.volatile_acidity' class="form-control">
+                <input (keyup)='changeQuality($event)' *ngIf='editMode' [(ngModel)]='currentWine.volatile_acidity' class="form-control">
               </div>
               <div class="col-md-4 text-center">
                 <h5><strong>Free Sulfur Dioxide</strong></h5>
                 <strong *ngIf='!editMode'>{{ currentWine.free_sulfur_dioxide }}</strong>
-                <input *ngIf='editMode' [(ngModel)]='currentWine.free_sulfur_dioxide' class="form-control">
+                <input (keyup)='changeQuality($event)' *ngIf='editMode' [(ngModel)]='currentWine.free_sulfur_dioxide' class="form-control">
               </div>
               <div class="col-md-4 text-center">
                 <h5><strong>Sulphates</strong></h5>
                 <strong *ngIf='!editMode'>{{ currentWine.sulphates }}</strong>
-                <input *ngIf='editMode' [(ngModel)]='currentWine.sulphates' class="form-control">
+                <input (keyup)='changeQuality($event)' *ngIf='editMode' [(ngModel)]='currentWine.sulphates' class="form-control">
               </div>
             </div>
 
@@ -120,17 +119,17 @@
               <div class="col-md-4 text-center">
                 <h5><strong>Citric Acid</strong></h5>
                 <strong *ngIf='!editMode'>{{ currentWine.citric_acid }}</strong>
-                <input *ngIf='editMode' [(ngModel)]='currentWine.citric_acid' class="form-control">
+                <input (keyup)='changeQuality($event)' *ngIf='editMode' [(ngModel)]='currentWine.citric_acid' class="form-control">
               </div>
               <div class="col-md-4 text-center">
                 <h5><strong>Total Sulfur Dioxide</strong></h5>
                 <strong *ngIf='!editMode'>{{ currentWine.total_sulfur_dioxide }}</strong>
-                <input *ngIf='editMode' [(ngModel)]='currentWine.total_sulfur_dioxide' class="form-control">
+                <input (keyup)='changeQuality($event)' *ngIf='editMode' [(ngModel)]='currentWine.total_sulfur_dioxide' class="form-control">
               </div>
               <div class="col-md-4 text-center">
                 <h5><strong>Alcohol</strong></h5>
                 <strong *ngIf='!editMode'>{{ currentWine.alcohol }}</strong>
-                <input *ngIf='editMode' [(ngModel)]='currentWine.alcohol' class="form-control">
+                <input (keyup)='changeQuality($event)' *ngIf='editMode' [(ngModel)]='currentWine.alcohol' class="form-control">
               </div>
             </div>
 
@@ -142,7 +141,7 @@
               <div class="col-md-4 text-center">
                 <h5><strong>Price</strong></h5>
                 <strong *ngIf='!editMode'>{{ currentWine.price }} Lei/Liter</strong>
-                <input *ngIf='editMode' [(ngModel)]='currentWine.price' class="form-control">
+                <input (keyup)='setPrice($event)' *ngIf='editMode' [(ngModel)]='currentWine.price' class="form-control">
               </div>
               <div class="col-md-4 text-center">
                 <h5><strong>Color</strong></h5>
@@ -151,7 +150,6 @@
                     {{ currentWine.color }}
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButtonColor">
-                  <a class="dropdown-item" (click)="chooseColor('None')">None</a>
                   <a class="dropdown-item" (click)="chooseColor('White')">White</a>
                   <a class="dropdown-item" (click)="chooseColor('Rose')">Rose</a>
                   <a class="dropdown-item" (click)="chooseColor('Red')">Red</a>

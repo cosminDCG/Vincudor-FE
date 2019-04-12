@@ -13,7 +13,10 @@ export class MyProductsComponent implements OnInit {
   public items: any;
   public currentWine = {
     wine_name : '',
-    type : ''
+    type : '',
+    color: '',
+    quality: '',
+    price: '0'
   };
   public editMode = 0;
 
@@ -62,4 +65,46 @@ export class MyProductsComponent implements OnInit {
     this.editMode = 0;
   }
 
+  chooseType(option){
+    this.currentWine.type = option;
+  }
+
+  chooseColor(option){
+    this.currentWine.color = option;
+  }
+
+  changeQuality($event){
+    this.productService.calculateQuality(this.currentWine).subscribe((res:any)=>{
+      if(res.quality == 1)
+        this.currentWine.quality = 'Medium';
+        else if(res.quality == 2)
+              this.currentWine.quality = 'Poor';
+                  else this.currentWine.quality = 'High';
+    }, (err)=>{
+
+    })
+  }
+
+  setPrice(){
+    if(this.currentWine.quality == 'Medium')
+      {
+        if(parseFloat(this.currentWine.price) > 15 || parseFloat(this.currentWine.price) < 10)
+          this.currentWine.price = '';
+      }
+
+      if(this.currentWine.quality == 'Poor')
+      {
+        if(parseFloat(this.currentWine.price) > 9 || parseFloat(this.currentWine.price) < 5)
+          this.currentWine.price = '';
+      }
+
+      if(this.currentWine.quality == 'High')
+      {
+        if(parseFloat(this.currentWine.price) > 20 || parseFloat(this.currentWine.price) < 15)
+          this.currentWine.price = '';
+      }
+
+      if(parseFloat(this.currentWine.price) < 0)
+        this.currentWine.price = '';
+  }
 }
