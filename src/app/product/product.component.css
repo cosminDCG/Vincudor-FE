@@ -104,3 +104,10 @@ h5{
 .commRow {
     margin-top:5%;
 }
+
+.replyCooment {
+    margin: 5% 0 5% 20%;
+}
+.replyooment textarea {
+    width:50% !important;
+}
