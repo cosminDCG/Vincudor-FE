@@ -1,4 +1,5 @@
 import { Component, OnInit, HostListener } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { ProductService } from '../services/product-service/product.service';
 import { GlobalService } from '../services/global-service/global.service';
@@ -21,7 +22,8 @@ export class MyProductsComponent implements OnInit {
   public editMode = 0;
 
   constructor(private global:GlobalService,
-              private productService:ProductService) { }
+              private productService:ProductService,
+              private router:Router) { }
 
   ngOnInit() {
     if(localStorage.getItem('crUser') && this.global.currentUser == null) {
@@ -62,7 +64,13 @@ export class MyProductsComponent implements OnInit {
   }
 
   saveChanges(){
+    this.productService.editWine(this.currentWine).subscribe((res:any)=>{
+      
+    }, (err)=>{
+
+    });
     this.editMode = 0;
+    window.location.reload();
   }
 
   chooseType(option){
