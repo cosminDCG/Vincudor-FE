@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import * as $ from 'jquery';
+import { NgxUiLoaderModule } from  'ngx-ui-loader';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -32,6 +33,7 @@ import { MyProductsComponent } from './my-products/my-products.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    NgxUiLoaderModule,
     HttpClientModule,
     RouterModule.forRoot([
       {
