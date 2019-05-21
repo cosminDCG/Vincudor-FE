@@ -37,7 +37,7 @@
 
   .card-signin .card-img-left {
     width: 45%;
-    background: scroll center url('https://cramahistria.ro/wp-content/uploads/pahar-vin-rosu-1.jpg');
+    background: scroll center url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUgJuUzqptyUV_o9HVJMlKYIN478pTD7vERmJy_3BRiGJMMPcv');
     background-size: cover;
   }
 
@@ -128,7 +128,9 @@
     color: white;
     background-color: #3b5998;
   }
-
+  .col-lg-10{
+    margin-bottom: 10%;
+  }
   .errorMessage {
     color:red !important;
     top:-20px !important;

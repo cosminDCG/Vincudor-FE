@@ -3,6 +3,8 @@ import { Router } from "@angular/router";
 
 import { ProductService } from '../services/product-service/product.service';
 import { GlobalService } from '../services/global-service/global.service';
+import { NgxUiLoaderService } from 'ngx-ui-loader'; 
+import { Options, LabelType, ChangeContext } from 'ng5-slider';
 
 @Component({
   selector: 'app-dashboard',
@@ -18,9 +20,36 @@ export class DashboardComponent implements OnInit {
   public isInCart:any;
   public index_products:any;
 
+  public itemsAux: any;
+  public searchCriteria: any;
+
+  public categoryFilter = 'Category';
+  public colorFilter = 'Color';
+  public activeFilter = 0;
+
+  public itemAuxPrice: any;
+
+  minValue: number = 0;
+  maxValue: number = 50;
+  options: Options = {
+    floor: 0,
+    ceil: 50,
+    translate: (value: number, label: LabelType): string => {
+      switch (label) {
+        case LabelType.Low:
+          return '<b>Min price:</b> ' + value;
+        case LabelType.High:
+          return '<b>Max price:</b> ' + value;
+        default:
+          return 'Lei ' + value;
+      }
+    }
+  };
+
   constructor(private globals:GlobalService,
               private productService:ProductService,
-              private router:Router) { }
+              private router:Router,
+              private ngxService: NgxUiLoaderService) { }
 
   ngOnInit() {
     if(localStorage.getItem('crUser') && this.globals.currentUser == null) {
@@ -31,6 +60,7 @@ export class DashboardComponent implements OnInit {
     this.user = this.globals.currentUser;
     this.productService.getAllProducts().subscribe((res:any)=>{
       this.items = res.wines;
+      this.itemsAux = this.items;
       console.log(this.items);
     }, (err)=>{
 
@@ -75,6 +105,52 @@ export class DashboardComponent implements OnInit {
     else {
       this.products[this.index_products].quantity ++;
     }
+  }
+
+  async search(){
+    this.ngxService.start();
+   
+    await new Promise((resolve)=>{setTimeout(() => {
+      this.ngxService.stop();
+      if(this.searchCriteria === '' || this.searchCriteria == null || !this.searchCriteria.replace(/\s/g, '').length){
+        this.items = this.itemsAux;
+        return;
+      }
+      this.items = this.itemsAux;
+      this.items = this.items.filter(item => item.wine_name.toLowerCase().includes(this.searchCriteria.toLowerCase()) );  
+      this.activeFilter = 1;
+    }, 500);});
+  }
+
+  selectCategory(criteria){
+    this.categoryFilter = criteria;
+    this.items = this.itemsAux;
+    this.activeFilter = 1;
+    this.items = this.items.filter(item => item.type === criteria);
+    this.colorFilter = 'Color';
+  }
+
+  selectColor(criteria){
+    this.colorFilter = criteria;
+    this.items = this.itemsAux;
+    this.activeFilter = 1;
+    this.items = this.items.filter(item => item.color === criteria);
+    this.categoryFilter = 'Category';
+  }
+
+  removeFilter(){
+    this.items= this.itemsAux;
+    this.colorFilter = 'Color';
+    this.categoryFilter = 'Category';
+    this.searchCriteria = '';
+    this.activeFilter = 0;
+  }
+
+  onPriceChange(changeContext: ChangeContext){
+    if(this.itemAuxPrice != null)
+      this.items = this.itemAuxPrice;
+      else this.itemAuxPrice = this.items;
+    this.items = this.items.filter(item => item.price >= changeContext.value && item.price <= changeContext.highValue);
   }
   
 }

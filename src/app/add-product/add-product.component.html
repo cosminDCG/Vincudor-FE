@@ -1,22 +1,27 @@
 <app-menu></app-menu>>
 
 <div class="container">
+  <ngx-ui-loader logoUrl="..\..\assets\vincudor-logo.png" logoSize="240" blur="10" text="Loading..."></ngx-ui-loader>
   <div class="row">
     <div class="col">
       <div class="card add-card">
           <div class="row-md-2 add-section">
               <strong><h3>Product Name</h3></strong>
               <hr>
+              <label *ngIf="showNameError" style="color: red;">Please enter a name for your product!</label>
               <input [(ngModel)]="productName" class="form-control">
           </div>
 
           <div class="row-md-6 add-section">
               <strong><h3>Properties</h3></strong>
+              <label *ngIf="showPropertiesError" style="color: red;">You have to complete all the properties!</label>
               <hr>
               <div class="col-md-4">
                 <div class="row-md-3">
-                  <strong>Type</strong>
+                  <strong>Type</strong><br *ngIf="showTypeError">
+                  <label *ngIf="showTypeError" style="color: red;">Please choose a type for your product!</label>
                   <div class="dropdown">
+                      
                       <button class="btn border border-warning rounded dropdown-toggle drop-btn" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                        {{ type }}
                       </button>
@@ -90,8 +95,13 @@
                   <strong class="qlty-value">{{ quality }}</strong>
               </div>
               <div class="col-md-4">
-                  <strong>Price</strong>
-                  <input (keyup)='setPrice($event)' [(ngModel)]="price" class="form-control">
+                  <strong>Price</strong><br *ngIf="showPriceError">
+                  <label *ngIf="showPriceError" style="color: red;">Please enter a price for your product!</label>
+                  <ng-template #popContent>You have to choose a price between: <b *ngIf="quality == 'Poor'">5 and 9 lei/L</b>
+                    <b *ngIf="quality == 'Medium'">10 and 15 lei/L</b>
+                    <b *ngIf="quality == 'High'">16 and 20 lei/L</b></ng-template>
+                  <ng-template #popTitle><b>Your wine's quality is: <b style="color: red;">{{ quality }}</b></b></ng-template>
+                  <input (keyup)='setPrice($event)' [ngbPopover]="popContent" [popoverTitle]="popTitle" [(ngModel)]="price" class="form-control">
               </div>
               <div class="col-md-4">
                   <strong>Quantity</strong><br>
@@ -105,8 +115,10 @@
               </div>
               
               <div class="col-md-4">
-                <strong>Color</strong>
+                <strong>Color</strong><br *ngIf="showColorError">
+                <label *ngIf="showColorError" style="color: red;">Please enter a color for your product!</label>
                 <div class="dropdown">
+                  
                   <button class="btn border border-warning rounded dropdown-toggle drop-btn" type="button" id="dropdownMenuButtonColor" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     {{ color }}
                   </button>
