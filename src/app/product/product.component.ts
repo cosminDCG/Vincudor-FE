@@ -27,6 +27,7 @@ export class ProductComponent implements OnInit {
   public commentList: any;
   public isSpecificUser = false;
   public commentContent: string;
+  public SubcommentContent: string;
   public user: any;
   public editMode = 0;
   public editModeSubcomm = 0;
@@ -80,7 +81,8 @@ export class ProductComponent implements OnInit {
                     //comment_id: 1,
                     user_id: this.user.user_id,
                     wine_id: this.currentItem.wine_id,
-                    comment: this.commentContent
+                    comment: this.commentContent,
+                    replied_to:  -1
     }
 
     if(comment.comment !== "")
@@ -92,7 +94,10 @@ export class ProductComponent implements OnInit {
     console.log(comment);
     this.commentContent="";
     this.disableReplyMode();
+    
     this.commentList.push(comment);
+    location.reload();
+
   } 
   
   deleteComment(item) {
@@ -101,7 +106,7 @@ export class ProductComponent implements OnInit {
       
       if(item.comment === this.commentList[i].comment)
       {
-        console.log("true")
+        console.log("Comment ID:" + item.comment_id)
         this.commentList.splice(i,1);
       }
     }
@@ -126,30 +131,7 @@ export class ProductComponent implements OnInit {
     console.log(item.replied_to);
   }
 
- /* editComment(item) {
-    for(var i = 0; i < this.commentList.length; i++)
-    {
-      if(item.comment === this.commentList[i].comment)
-      {
-        //this.oldIndex = item.comment_id;
-        this.editedComment = item.comment;
-        this.enableEditMode(item);
-      }
-    }
-  }*/
-
-  /*
-  editSubComment(item) {
-    for(var i = 0; i < this.commentList.length;i++)
-    {
-      if(item.comment === this.commentList[i].comment)
-      {
-        this.editedSubComment = item.comment;
-        this.enableEditModeSubcomm(item);
-      }
-    }
-  }
-*/
+ 
   saveChanges(item) {
     item.comment = this.editedComment;
     this.disableEditMode();
@@ -191,7 +173,7 @@ export class ProductComponent implements OnInit {
         //comment_id: 1,
         user_id: this.user.user_id,
         wine_id: this.currentItem.wine_id,
-        comment: this.commentContent,
+        comment: this.SubcommentContent,
         replied_to: item.comment_id
       }
 
@@ -205,7 +187,30 @@ export class ProductComponent implements OnInit {
       this.commentContent="";
       this.disableReplyMode();
       this.commentList.push(comment);
+      this.productService.getProductById(this.global.currentProductId).subscribe((res:any)=>{
+        this.currentItem = res.wine;
+        this.commentList = res.wine.comments;
+        //console.log("Res: " + res.wine.comments);
+      }, (err)=>{
+  
+      });
+      location.reload();
+  }
 
+  addToCart(index:number) {
+    var cart = {
+      user_id: this.user.user_id,
+      product_id: index
+    }
+    console.log("id product" + index);
+    console.log("Id utilizator" + this.user.user_id);
+    this.productService.addProductToCart(cart).subscribe((res:any)=>{
+
+    }, (err)=>{
+
+    });
+    console.log("A mers");
+    
   }
 
   
