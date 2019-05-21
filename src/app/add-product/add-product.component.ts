@@ -4,6 +4,8 @@ import { Router } from "@angular/router";
 import { GlobalService } from '../services/global-service/global.service';
 import { ProductService } from '../services/product-service/product.service';
 
+import { NgxUiLoaderService } from 'ngx-ui-loader'; 
+
 
 @Component({
   selector: 'app-add-product',
@@ -27,15 +29,22 @@ export class AddProductComponent implements OnInit {
   public alcohol : any;
   public quality = '0';
   public price: any;
-  public quantity = 0;
+  public quantity = 1;
   public color = 'None';
   public description: any;
   public calculateQuality = 0;
   public user: any;
 
+  public showNameError = 0;
+  public showTypeError = 0;
+  public showColorError = 0;
+  public showPriceError = 0;
+  public showPropertiesError = 0;
+
   constructor(private globals:GlobalService,
               private productService:ProductService,
-              private router:Router) { }
+              private router:Router,
+              private ngxService: NgxUiLoaderService) { }
 
   ngOnInit() {
     this.user = this.globals.currentUser;
@@ -51,6 +60,8 @@ export class AddProductComponent implements OnInit {
   }
 
   generateQuality(){
+    this.showPropertiesError = 0;
+
     var wine = {
       producer_id : this.globals.currentUser.user_id,
       wine_name : this.productName,
@@ -72,6 +83,15 @@ export class AddProductComponent implements OnInit {
       color : this.color,
       description : this.description
     }
+
+    if(this.fixedAcidity == null || this.volatileAcidity == null || this.citricAcid == null || this.residualSugar == null || this.chlorides == null ||
+      this.freeSulfurDioxide == null || this.totalSulfurDioxide == null || this.density == null || this.pH == null || this.sulphates == null ||
+      this.alcohol == 0 ){
+        this.showPropertiesError = 1;
+        return;
+      }
+      
+    this.ngxService.start();
     this.productService.calculateQuality(wine).subscribe((res:any)=>{
       if(res.quality == 1)
         this.quality = 'Medium';
@@ -79,6 +99,7 @@ export class AddProductComponent implements OnInit {
                 this.quality = 'Poor';
                   else this.quality = 'High';
       this.calculateQuality = 1;
+      this.ngxService.stop();
     }, (err)=>{
 
     })
@@ -86,7 +107,7 @@ export class AddProductComponent implements OnInit {
   }
 
   qtyMinus(){
-    if(this.quantity > 0)
+    if(this.quantity > 1)
       this.quantity --;
   }
 
@@ -103,6 +124,12 @@ export class AddProductComponent implements OnInit {
   }
 
   addProduct(){
+    this.showColorError = 0;
+    this.showNameError = 0;
+    this.showTypeError = 0;
+    this.showPriceError = 0;
+    this.showPropertiesError = 0;
+
     var product = {
       producer_id: this.user.user_id,
       wine_name: this.productName,
@@ -123,6 +150,22 @@ export class AddProductComponent implements OnInit {
       quantity: this.quantity,
       color: this.color,
       description: this.description
+    }
+
+    if(this.productName == '' || this.productName == null)
+      this.showNameError = 1;
+
+    if(this.type = 'Type')
+      this.showTypeError = 1;
+
+    if(this.color == 'None')
+      this.showColorError = 1;
+
+    if(this.price == '' || this.price == null)
+      this.showPriceError = 1;
+
+    if(this.showColorError == 1 || this.showTypeError == 1 || this.showNameError == 1 || this.showPriceError == 1){
+      return;
     }
 
     this.productService.addProduct(product).subscribe((res:any)=>{

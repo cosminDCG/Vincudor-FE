@@ -4,6 +4,7 @@ import { Router } from "@angular/router";
 import { ProductService } from '../services/product-service/product.service';
 import { GlobalService } from '../services/global-service/global.service';
 import { NgxUiLoaderService } from 'ngx-ui-loader'; 
+import { Options, LabelType, ChangeContext } from 'ng5-slider';
 
 @Component({
   selector: 'app-dashboard',
@@ -21,6 +22,25 @@ export class DashboardComponent implements OnInit {
   public categoryFilter = 'Category';
   public colorFilter = 'Color';
   public activeFilter = 0;
+
+  public itemAuxPrice: any;
+
+  minValue: number = 0;
+  maxValue: number = 50;
+  options: Options = {
+    floor: 0,
+    ceil: 50,
+    translate: (value: number, label: LabelType): string => {
+      switch (label) {
+        case LabelType.Low:
+          return '<b>Min price:</b> ' + value;
+        case LabelType.High:
+          return '<b>Max price:</b> ' + value;
+        default:
+          return 'Lei ' + value;
+      }
+    }
+  };
 
   constructor(private globals:GlobalService,
               private productService:ProductService,
@@ -106,6 +126,13 @@ export class DashboardComponent implements OnInit {
     this.categoryFilter = 'Category';
     this.searchCriteria = '';
     this.activeFilter = 0;
+  }
+
+  onPriceChange(changeContext: ChangeContext){
+    if(this.itemAuxPrice != null)
+      this.items = this.itemAuxPrice;
+      else this.itemAuxPrice = this.items;
+    this.items = this.items.filter(item => item.price >= changeContext.value && item.price <= changeContext.highValue);
   }
   
 }

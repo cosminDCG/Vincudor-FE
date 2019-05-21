@@ -35,6 +35,8 @@ export class ProductComponent implements OnInit {
   public repliedMode = 0;
   public replyComment:any;
 
+  public rating = 0;
+
   constructor(private global:GlobalService,
               private productService:ProductService) { }
 
@@ -211,6 +213,10 @@ export class ProductComponent implements OnInit {
     });
     console.log("A mers");
     
+  }
+
+  giveRating(i){
+    this.rating = i;
   }
 
   

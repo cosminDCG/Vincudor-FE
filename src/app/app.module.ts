@@ -5,6 +5,8 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import * as $ from 'jquery';
 import { NgxUiLoaderModule } from  'ngx-ui-loader';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { Ng5SliderModule } from 'ng5-slider';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -34,6 +36,8 @@ import { MyProductsComponent } from './my-products/my-products.component';
     AppRoutingModule,
     FormsModule,
     NgxUiLoaderModule,
+    NgbModule,
+    Ng5SliderModule,
     HttpClientModule,
     RouterModule.forRoot([
       {

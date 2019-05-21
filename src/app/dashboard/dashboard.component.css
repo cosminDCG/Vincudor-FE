@@ -84,3 +84,10 @@ img{
     cursor: pointer;
 }
 
+.slider-search{
+    margin-top: 3%;
+    width: 30%;
+    margin-left: 2%;
+    float: left;
+}
+

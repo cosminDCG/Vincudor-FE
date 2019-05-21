@@ -7,6 +7,7 @@
 
       <div class="filter-container">
         <input [(ngModel)] = "searchCriteria" (change)="search()" class="form-control wine-search" placeholder="Search...">
+        <ng5-slider class="slider-search" [(value)]="minValue" [(highValue)]="maxValue" [options]="options" (userChangeEnd)="onPriceChange($event)"></ng5-slider>
 
         <div class="dropdown float-right">
         
@@ -49,7 +50,7 @@
 
           <ul (click)="seeItemDetails(item)" class="list-group list-group-flush">
             <li class="list-group-item">{{item.price}} Lei/Liter</li>
-            <li class="list-group-item"><i *ngFor="let i of [1,2,3,4,5]" class="far fa-star review-star"></i> (0/5)</li>
+            <li class="list-group-item"><i *ngFor="let i of [1,2,3,4,5]" class="fas fa-star review-star"></i> (0/5)</li>
             <li class="list-group-item">
               <span class="col-md-6 float-left">
                   {{item.color}}
