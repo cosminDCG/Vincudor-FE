@@ -128,3 +128,8 @@
     color: white;
     background-color: #3b5998;
   }
+
+  .errorMessage {
+    color:red !important;
+    top:-20px !important;
+  }

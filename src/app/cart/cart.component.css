@@ -116,3 +116,7 @@ span.price {
   justify-content: center;
   align-items:center;
 }
+
+.errorMessage {
+  color:red;
+}

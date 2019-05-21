@@ -29,6 +29,19 @@ export class CartComponent implements OnInit {
   public expyear:any;
   public cvv:any;
 
+  //Validation
+  public firstNameValid:any;
+  public emailValid:any;
+  public addressValid:any;
+  public cityValid:any;
+  public stateValid:any;
+  public zipValid:any;
+  public cardNameValid:any;
+  public cardNumberValid:any;
+  public expmonthValid:any;
+  public expyearVaiid:any;
+  public cvvValid:any;
+
   products: any[];
   upproducts: any[] = [];
   selectedProduct : Subject<any> = new Subject;
@@ -104,32 +117,13 @@ export class CartComponent implements OnInit {
   }
 
   add(item){
-   
-    // for(var i=0;i<this.products.length;i++){
-    //   if(this.products[i].wine_id === pid)
-    //   {  
-    //     this.products[i].quantity += 1;
-    //   }           
-    // }
+  
     item.quantity++;
     this.totalPrice();
     console.log(this.products);
   }
 
   del(item){
-   
-    // for(var i=0;i<this.products.length;i++){
-    //   if(this.products[i].wine_id === pid)
-    //   {
-    //     if(this.products[i].quantity > 1)
-    //     {
-    //       this.products[i].quantity -= 1;
-    //     }  
-    //     else {
-    //       this.delpopup(this.products[i].wine_id);
-    //     }
-    //   }           
-    // }
     if(item.quantity>0)
       item.quantity--;
     this.totalPrice();
@@ -141,6 +135,34 @@ export class CartComponent implements OnInit {
   }
 
   onSubmit() {
+    const textReg = /^[a-zA-Z ]+$/;
+    const emailReg = /^([A-Za-z0-9_\-.])+@([A-Za-z0-9_\-.])+\.([A-Za-z]{2,4})$/;
+    const numericReg = /^[0-9]*$/;
+
+    this.firstNameValid = textReg.test(this.firstName); 
+    console.log("name " +this.firstNameValid);
+    this.emailValid = emailReg.test(this.email);
+    console.log("Email: " + this.emailValid);
+    //this.addressValid = textReg.test(this.address);
+    console.log("address: " + this.addressValid);
+    this.cityValid = textReg.test(this.city);
+    console.log("city: " + this.cityValid);
+    this.stateValid = textReg.test(this.state);
+    console.log("state: " + this.stateValid);
+    this.zipValid = numericReg.test(this.zip);
+    console.log("zip: " + this.zipValid);
+    this.cardNameValid = textReg.test(this.cardname);
+    console.log("card name: " + this.cardNameValid);
+    this.cardNumberValid = numericReg.test(this.cardnumber);
+    console.log("card number: " + this.cardNumberValid);
+    this.expmonthValid = numericReg.test(this.expmonth);
+    console.log("expp month: " + this.expmonthValid);
+    this.expyearVaiid = numericReg.test(this.expyear);
+    console.log("exp year: " + this.expyearVaiid);
+    this.cvvValid = numericReg.test(this.cvv);
+    console.log("cvv: " + this.cvvValid);
+
+    
     var auxProduct:any[] = [];
     let  i:number;
     for(i = 0; i < this.products.length; i++)
@@ -159,13 +181,20 @@ export class CartComponent implements OnInit {
       adresa: finalAdress,
       user_id: this.user.user_id
     }
-    this.productService.addAnOrder(order).subscribe((res:any)=>{
+
+    if(this.firstNameValid && this.emailValid  && this.cityValid && this.stateValid && this.zipValid && this.cardNameValid && this.cardNumberValid && this.cvvValid && this.expmonthValid && this.expyearVaiid
+      )
+      {
+        this.productService.addAnOrder(order).subscribe((res:any)=>{
           
-    }, (err)=>{
+        }, (err)=>{
+    
+        });
+    
+        this.isCheckout = true; 
+      }
 
-    });
-
-    this.isCheckout = true; 
+    
   }
 
 

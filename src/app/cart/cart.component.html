@@ -56,22 +56,28 @@
           <div class="col-md-7">
             <h3>Adresa de livrare</h3>
             <label for="fname"><i class="fa fa-user"></i> Nume</label>
-            <input type="text" id="fname" [(ngModel)]="firstName" name="firstName" placeholder="Ex: Popescu Ion" required>
+            <label *ngIf="firstNameValid" class="errorMessage">Va rugam sa verificati numele</label>
+            <input type="text" pattern="[A-Za-z]{1,}" id="fname" [(ngModel)]="firstName" name="firstName" placeholder="Ex: Popescu Ion" required>
             <label for="email"><i class="fa fa-envelope"></i> Email</label>
-            <input type="text" id="email" [(ngModel)]="email" name="email" placeholder="ion.popescu@gmail.com" required>
+            <label  *ngIf="emailValid" class="errorMessage">Va rugam sa verificati adresa de email</label>
+            <input type="email" id="email" [(ngModel)]="email" name="email" placeholder="ion.popescu@gmail.com" required>
             <label for="adr"><i class="fas fa-map-marker-alt"></i> Adresa</label>
-            <input type="text" id="adr" [(ngModel)]="address" name="address" placeholder="Strada, numar,bloc" required>
+            <label *ngIf="addressValid" class="errorMessage">Va rugam sa verificati adresa dumneavoastra.</label>
+            <input type="text" pattern="[A-Za-z]" id="adr" [(ngModel)]="address" name="address" placeholder="Strada, numar,bloc" required>
             <label for="city"><i class="far fa-building"></i> Oras</label>
-            <input type="text" id="city" [(ngModel)]="city" name="city" placeholder="Bucuresti" required>
+            <label *ngIf="cityValid" class="errorMessage">Va rugam sa verificati orasul</label>
+            <input type="text" pattern="[A-Za-z]" id="city" [(ngModel)]="city" name="city" placeholder="Bucuresti" required>
 
             <div class="row">
               <div class="col-md-6">
                 <label for="state"><i class="fas fa-globe-europe"></i>Tara</label>
-                <input type="text" id="state" [(ngModel)]="state" name="state" placeholder="Romania" required>
+                <label *ngIf="stateValid" class="errorMessage">Va rugam sa verificati tara</label>
+                <input type="text" pattern="[A-Za-z]" id="state" [(ngModel)]="state" name="state" placeholder="Romania" required>
               </div>
               <div class="col-md-6">
                 <label for="zip">Cod Postal</label>
-                <input type="text" id="zip" [(ngModel)]="zip" name="cod" placeholder="000000" required>
+                <label *ngIf="zipValid" class="errorMessage">Va rugam sa verificati codul postal</label>
+                <input type="text" pattern="[0-9]" id="zip" [(ngModel)]="zip" name="cod" placeholder="000000" required>
               </div>
             </div>
           </div>
@@ -85,21 +91,26 @@
               
             </div>
             <label for="cname">Titular card</label>
-            <input type="text" id="cname" [(ngModel)]="cardname" name="card" placeholder="Poepscu Ion">
+            <label *ngIf="cardNameValid" class="errorMessage">Va rugam sa verificati numele de pe card</label>
+            <input type="text" pattern="[A-Za-z]" id="cname" [(ngModel)]="cardname" name="card" placeholder="Popescu Ion">
             <label for="ccnum">Numar card</label>
-            <input type="text" id="ccnum" [(ngModel)]="cardnumber" name="card" placeholder="1111-2222-3333-4444">
+            <label *ngIf="cardNumberValid" class="errorMessage">Va rugam sa verificati numarul cardului</label>
+            <input type="text" pattern="[0-9]{1,}" id="ccnum" [(ngModel)]="cardnumber" name="card" placeholder="1111-2222-3333-4444">
             <div class="row">
               <div class="col-md-4">
                   <label for="expmonth">Luna</label>
-                  <input type="text" id="expmonth" [(ngModel)]="expmonth" name="month" placeholder="03">
+                  <label *ngIf="expmonthValid" class="errorMessage">Va rugam sa verificati luna</label>
+                  <input type="text" pattern="[A-Za-z]" id="expmonth" [(ngModel)]="expmonth" name="month" placeholder="03">
               </div>
               <div class="col-md-4">
                 <label for="expyear">An</label>
-                <input type="text" id="expyear" [(ngModel)]="expyear" name="year" placeholder="18">
+                <label *ngIf="expyearVaiid" class="errorMessage">Va rugam sa verificati anul</label>
+                <input type="text"  pattern="[0-9]" id="expyear" [(ngModel)]="expyear" name="year" placeholder="18">
               </div>
               <div class="col-md-4">
                 <label for="cvv">CVC</label>
-                <input type="text" id="cvv" [(ngModel)]="cvv" name="cvc" placeholder="352">
+                <label *ngIf="cvvValid" class="errorMessage">Va rugam sa verificati CVC-ul</label>
+                <input type="text" pattern="[0-9]" id="cvv" [(ngModel)]="cvv" name="cvc" placeholder="352">
               </div>
             </div>
           </div>          
