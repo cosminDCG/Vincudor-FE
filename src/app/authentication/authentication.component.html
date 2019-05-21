@@ -69,9 +69,6 @@
                             <a *ngIf="!activateLogin" class="d-block text-center mt-2 small" (click)="toLogin()">Sign In</a>
                             <a *ngIf="activateLogin" class="d-block text-center mt-2 small" (click)="toRegister()">Register</a>
                             <hr class="my-4">
-
-                            <button *ngIf="!activateLogin" class="btn btn-lg btn-google btn-block text-uppercase" type="submit"><i class="fab fa-google mr-2"></i> Sign up with Google</button>
-                            <button *ngIf="!activateLogin" class="btn btn-lg btn-facebook btn-block text-uppercase" type="submit"><i class="fab fa-facebook-f mr-2"></i> Sign up with Facebook</button>
                             <img class="logo" *ngIf="activateLogin" src="../../assets/vincudor-drept.png">
                         </form>
                     </div>

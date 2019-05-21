@@ -55,6 +55,7 @@ export class ProductComponent implements OnInit {
 
     this.productService.getProductById(this.global.currentProductId, this.global.currentUser.user_id).subscribe((res:any)=>{
       this.currentItem = res.wine;
+      this.rating = this.currentItem.myReview;
       this.commentList = res.wine.comments;
     }, (err)=>{
 
@@ -192,7 +193,7 @@ export class ProductComponent implements OnInit {
       this.commentContent="";
       this.disableReplyMode();
       this.commentList.push(comment);
-      this.productService.getProductById(this.global.currentProductId).subscribe((res:any)=>{
+      this.productService.getProductById(this.global.currentProductId, this.global.currentUser.user_id).subscribe((res:any)=>{
         this.currentItem = res.wine;
         this.commentList = res.wine.comments;
         //console.log("Res: " + res.wine.comments);
@@ -222,5 +223,18 @@ export class ProductComponent implements OnInit {
     this.rating = i;
   }
 
+  addReview(){
+    var rev = {
+      review: this.rating,
+      user_id: this.global.currentUser.user_id,
+      wine_id: this.currentItem.wine_id
+    }
+
+    this.productService.addReview(rev).subscribe((res:any)=>{
+
+    }, (err) => {
+
+    });
+  }
   
 }

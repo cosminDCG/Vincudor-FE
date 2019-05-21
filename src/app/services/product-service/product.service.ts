@@ -70,4 +70,8 @@ export class ProductService {
   editWine(wine){
     return this.http.post('http://localhost:3000/wines/edit', wine);
   }
+
+  addReview(rev){
+    return this.http.post('http://localhost:3000/review', rev);
+  }
 }
