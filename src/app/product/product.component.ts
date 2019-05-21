@@ -53,7 +53,7 @@ export class ProductComponent implements OnInit {
     this.user = this.global.currentUser;
     console.log("Global user id" + this.global.currentUser.user_id);
 
-    this.productService.getProductById(this.global.currentProductId).subscribe((res:any)=>{
+    this.productService.getProductById(this.global.currentProductId, this.global.currentUser.user_id).subscribe((res:any)=>{
       this.currentItem = res.wine;
       this.commentList = res.wine.comments;
       //console.log("Res: " + res.wine.comments);
@@ -157,18 +157,22 @@ export class ProductComponent implements OnInit {
   disableEditMode() {
     this.editMode = 0 ;
   }
+
   disableEditModeSubcomm() {
     this.editModeSubcomm = 0 ;
   }
+
   disableReplyMode() {
     this.repliedMode= 0;
   }
+
   enableReplyMode(item) {
     this.repliedMode = 1;
     this.replyComment = item.comment_id;
 
     console.log(this.repliedMode);
   }
+
   addReplyComment(item) {
       this.enableReplyMode(item);
       var comment = {
