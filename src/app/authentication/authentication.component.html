@@ -11,28 +11,33 @@
                         <h5 *ngIf="activateLogin" class="card-title text-center">Login</h5>
                         <form class="form-signin">
                             <div *ngIf="!activateLogin" class="form-label-group">
-                                <input [(ngModel)]="firstName" name="fn" type="text" id="firstName" class="form-control" placeholder="First Name" required autofocus>
+                                <input  [(ngModel)]="firstName" name="fn" type="text" id="firstName" class="form-control" placeholder="First Name" required autofocus>
                                 <label for="firstName">First Name</label>
+                                <label *ngIf="!firstNameValid" class="errorMessage">Va rugam sa verificati numele!</label>
                             </div>
 
                             <div *ngIf="!activateLogin" class="form-label-group">
                                 <input [(ngModel)]="lastName" name="ln" type="text" id="lastName" class="form-control" placeholder="Last Name" required>
                                 <label for="lastName">Last Name</label>
+                                <label *ngIf="!lasNameValid" class="errorMessage">Va rugam sa verificati prenumele!</label>
                             </div>
 
                             <div *ngIf="!activateLogin" class="form-label-group">
                                 <input [(ngModel)]="email" name="email" type="text" id="email" class="form-control" placeholder="Email" required>
                                 <label for="email">Email</label>
+                                <label *ngIf="!emailValid" class="errorMessage">Va rugam sa verificati email-ul!</label>
                             </div>
 
                             <div *ngIf="!activateLogin" class="form-label-group">
                                 <input [(ngModel)]="city" name="city" type="text" id="city" class="form-control" placeholder="City" required>
                                 <label for="city">City</label>
+                                <label *ngIf="!cityValid" class="errorMessage">Va rugam verificati orasul!</label>
                             </div>
 
                             <div *ngIf="!activateLogin" class="form-label-group">
                                 <input [(ngModel)]="phoneNumber" name="phNumber" type="text" id="phNumber" class="form-control" placeholder="Phone Number" required>
                                 <label for="city">Phone Number</label>
+                                <label *ngIf="!phoneNumberValid" class="errorMessage">Va rugam sa verificati numerul de telefonul</label>
                             </div>
 
                             <hr *ngIf="!activateLogin">
@@ -40,11 +45,13 @@
                             <div *ngIf="!activateLogin" class="form-label-group">
                                 <input [(ngModel)]="password" name="pass" type="password" id="inputPassword" class="form-control" placeholder="Password" required>
                                 <label for="inputPassword">Password</label>
+                                <label *ngIf="!passwordValid" class="errorMessage">Va rugam sa introduceti o noua parola!</label>
                             </div>
                                 
                             <div *ngIf="!activateLogin" class="form-label-group">
                                 <input [(ngModel)]="repeatPassword" type="password" name="rePass" id="inputConfirmPassword" class="form-control" placeholder="Password" required>
                                 <label for="inputConfirmPassword">Confirm password</label>
+                                <label *ngIf="!repeatPasswordValid" class="errorMessage">Va rugam sa verificati parola!</label>
                             </div>
 
                             <div *ngIf="activateLogin" class="form-label-group">

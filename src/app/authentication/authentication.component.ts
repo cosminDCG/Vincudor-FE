@@ -23,6 +23,17 @@ export class AuthenticationComponent implements OnInit {
 
   public logEmail: any;
   public logPassword: any;
+
+  //validation
+
+  public firstNameValid:any = true;
+  public lasNameValid:any =true;
+  public emailValid:any = true;
+  public cityValid:any = true;
+  public phoneNumberValid:any = true;
+  public passwordValid: any = true;
+  public repeatPasswordValid:any = true;
+
   constructor(private userService:UserService,
               private globals:GlobalService,
               private router: Router) { }
@@ -39,7 +50,28 @@ export class AuthenticationComponent implements OnInit {
   }
 
   register(){
-    if(this.password != this.repeatPassword){
+
+    
+    const textReg = /^[a-zA-Z ]+$/;
+    const emailReg = /^([A-Za-z0-9_\-.])+@([A-Za-z0-9_\-.])+\.([A-Za-z]{2,4})$/;
+    const numericReg = /^[0-9]*$/;
+
+    this.firstNameValid = textReg.test(this.firstName);
+    console.log("first: " + this.firstNameValid);
+    this.lasNameValid = textReg.test(this.lastName);
+    console.log("last: " + this.lasNameValid);
+    this.emailValid = emailReg.test(this.email);
+    console.log("email: " + this.emailValid);
+    this.cityValid = textReg.test(this.city);
+    console.log("city: " + this.cityValid);
+    this.phoneNumberValid = textReg.test(this.phoneNumber);
+    console.log("phone: " + this.phoneNumberValid);
+    this.passwordValid = textReg.test(this.password);
+    console.log("password: " + this.passwordValid);
+    this.repeatPasswordValid = textReg.test(this.repeatPassword);
+    console.log("repeat password: " + this.repeatPasswordValid);
+
+    if((this.password != this.repeatPassword) || !this.firstNameValid || !this.lasNameValid || !this.emailValid || !this.cityValid || !this.phoneNumberValid ){
       return;
     }
     var user = {

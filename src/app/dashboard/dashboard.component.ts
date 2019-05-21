@@ -15,6 +15,10 @@ export class DashboardComponent implements OnInit {
 
   public items: any;
   public user:any;
+  public products:any[];
+  public index_array:any;
+  public isInCart:any;
+  public index_products:any;
 
   public itemsAux: any;
   public searchCriteria: any;
@@ -52,7 +56,7 @@ export class DashboardComponent implements OnInit {
       var aux = localStorage.getItem('crUser');
       this.globals.currentUser = JSON.parse(aux);
     }
-
+    this.isInCart = false;
     this.user = this.globals.currentUser;
     this.productService.getAllProducts().subscribe((res:any)=>{
       this.items = res.wines;
@@ -80,13 +84,27 @@ export class DashboardComponent implements OnInit {
     }
     console.log("id product" + index);
     console.log("Id utilizator" + this.user.user_id);
-    this.productService.addProductToCart(cart).subscribe((res:any)=>{
 
+    this.productService.getItemsFromCart(this.user.user_id).subscribe((res:any)=>{
+      this.products = res.cart;
+      this.index_array = 0;
+      for(this.index_array = 0; this.index_array <= this.products.length; this.index_array++)
+      {
+          if(this.products[this.index_array].Id == index) 
+                  { this.isInCart = true; this.index_products = this.index_array;}
+      }
     }, (err)=>{
-
     });
-    console.log("A mers");
-    
+
+    if(this.isInCart == false)
+    {
+      this.productService.addProductToCart(cart).subscribe((res:any)=>{
+      }, (err)=>{
+      });
+    }
+    else {
+      this.products[this.index_products].quantity ++;
+    }
   }
 
   async search(){
