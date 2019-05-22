@@ -3,6 +3,7 @@ import { Component, OnInit, HostListener } from '@angular/core';
 import { GlobalService } from '../services/global-service/global.service';
 import { ProductService } from '../services/product-service/product.service';
 import { SSL_OP_SSLEAY_080_CLIENT_DH_BUG } from 'constants';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-product',
@@ -15,14 +16,8 @@ export class ProductComponent implements OnInit {
   public editedComment:any;
   public editedSubComment:any;
   public currentItem: any;
-  public quantity = 0;
- /* public commentList = [
-                        { user_id:1,
-                          user_first_name:"Madalin",
-                          user_last_name:"Benchia",
-                          comment_text:"Aceste este un comentariu text"
-                        }
-  ];*/
+  public quantity = 1;
+
 
   public commentList: any;
   public isSpecificUser = false;
@@ -38,7 +33,8 @@ export class ProductComponent implements OnInit {
   public rating = 0;
 
   constructor(private global:GlobalService,
-              private productService:ProductService) { }
+              private productService:ProductService,
+              private toastr: ToastrService) { }
 
   ngOnInit() {
     if(localStorage.getItem('crUser') && this.global.currentUser == null) {
@@ -74,7 +70,7 @@ export class ProductComponent implements OnInit {
   }
 
   qtyMinus(){
-    if(this.quantity > 0){
+    if(this.quantity > 1){
       this.quantity--;
     }
   }
@@ -139,7 +135,6 @@ export class ProductComponent implements OnInit {
     this.disableEditMode();
     
     this.productService.editCommentForAProduct(item).subscribe((res:any) => {
-      console.log("l-am editat");
     }, (err) => {
     });
   }
@@ -206,12 +201,12 @@ export class ProductComponent implements OnInit {
   addToCart(index:number) {
     var cart = {
       user_id: this.user.user_id,
-      product_id: index
+      product_id: index,
+      quantity: this.quantity
     }
-    console.log("id product" + index);
-    console.log("Id utilizator" + this.user.user_id);
+    
     this.productService.addProductToCart(cart).subscribe((res:any)=>{
-
+      this.toastr.success('', 'Added to Cart!');
     }, (err)=>{
 
     });

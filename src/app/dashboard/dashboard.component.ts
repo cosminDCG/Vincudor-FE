@@ -5,6 +5,7 @@ import { ProductService } from '../services/product-service/product.service';
 import { GlobalService } from '../services/global-service/global.service';
 import { NgxUiLoaderService } from 'ngx-ui-loader'; 
 import { Options, LabelType, ChangeContext } from 'ng5-slider';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-dashboard',
@@ -25,9 +26,11 @@ export class DashboardComponent implements OnInit {
 
   public categoryFilter = 'Category';
   public colorFilter = 'Color';
+  public revFilter = 'Review';
   public activeFilter = 0;
 
   public itemAuxPrice: any;
+  public addedItems: any[] = [];
 
   minValue: number = 0;
   maxValue: number = 50;
@@ -49,7 +52,8 @@ export class DashboardComponent implements OnInit {
   constructor(private globals:GlobalService,
               private productService:ProductService,
               private router:Router,
-              private ngxService: NgxUiLoaderService) { }
+              private ngxService: NgxUiLoaderService,
+              private toastr: ToastrService) { }
 
   ngOnInit() {
     if(localStorage.getItem('crUser') && this.globals.currentUser == null) {
@@ -80,12 +84,13 @@ export class DashboardComponent implements OnInit {
   addToCart(index:number) {
     var cart = {
       user_id: this.user.user_id,
-      product_id: index
+      product_id: index,
+      quantity: 1
     }
-    console.log("id product" + index);
-    console.log("Id utilizator" + this.user.user_id);
 
     this.productService.getItemsFromCart(this.user.user_id).subscribe((res:any)=>{
+      this.toastr.success('', 'Added to Cart!');
+      this.addedItems.push(index);
       this.products = res.cart;
       this.index_array = 0;
       for(this.index_array = 0; this.index_array <= this.products.length; this.index_array++)
@@ -138,11 +143,24 @@ export class DashboardComponent implements OnInit {
     this.categoryFilter = 'Category';
   }
 
+  selectRev(criteria){
+    this.revFilter = criteria;
+    this.items = this.itemsAux;
+    this.activeFilter = 1;
+    console.log(criteria);
+    if(criteria === "High to Low"){
+      this.items = this.items.sort((item1, item2)=> item2.avgReview - item1.avgReview);
+    } else {
+      this.items = this.items.sort((item1, item2)=> item1.avgReview - item2.avgReview);
+    }
+  }
+
   removeFilter(){
     this.items= this.itemsAux;
     this.colorFilter = 'Color';
     this.categoryFilter = 'Category';
     this.searchCriteria = '';
+    this.revFilter = "Review";
     this.activeFilter = 0;
   }
 

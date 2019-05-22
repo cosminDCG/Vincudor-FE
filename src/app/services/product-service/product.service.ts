@@ -17,7 +17,7 @@ export class ProductService {
   }
 
   getProductById(wineId, userId){
-    return this.http.get('http://localhost:3000/wines/' + wineId + '/' + userId);
+    return this.http.get('http://localhost:3000/wines/' + wineId + '/user/' + userId);
   }
 
   addProductToCart(cart)
@@ -73,5 +73,9 @@ export class ProductService {
 
   addReview(rev){
     return this.http.post('http://localhost:3000/review', rev);
+  }
+
+  updateCart(userId, wines){
+    return this.http.post('http://localhost:3000/cart/' + userId, wines)
   }
 }

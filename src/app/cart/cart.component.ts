@@ -5,6 +5,7 @@ import { IProduct } from "../product/iproduct";
 import { Subject } from 'rxjs';
 import { OriginalSource } from 'webpack-sources';
 import { ProductService } from '../services/product-service/product.service';
+import { ToastrService } from 'ngx-toastr';
 
 import { GlobalService } from '../services/global-service/global.service';
 import { totalmem } from 'os';
@@ -42,6 +43,8 @@ export class CartComponent implements OnInit {
   public expyearVaiid:any;
   public cvvValid:any;
 
+  public cartChanged = 0;
+
   products: any[];
   upproducts: any[] = [];
   selectedProduct : Subject<any> = new Subject;
@@ -49,8 +52,10 @@ export class CartComponent implements OnInit {
   public isViewable: boolean;
   public isCheckout: boolean;
   public user :any;
+
   constructor(private global:GlobalService,
-    private productService:ProductService) {
+    private productService:ProductService,
+    private toastr: ToastrService) {
   
   }
   
@@ -64,8 +69,6 @@ export class CartComponent implements OnInit {
     console.log("User ID: " + this.user.user_id);
     this.productService.getItemsFromCart(this.user.user_id).subscribe((res:any)=>{
       this.products = res.cart;
-      console.log(res.cart);
-      this.products.map((item)=>item.quantity = 1);
       this.totalPrice();  
     }, (err)=>{
       
@@ -102,6 +105,7 @@ export class CartComponent implements OnInit {
         });
       }           
     }
+    this.toastr.error('', 'Deleted from Cart!');
     this.totalPrice();
   }
 
@@ -118,13 +122,14 @@ export class CartComponent implements OnInit {
   
     item.quantity++;
     this.totalPrice();
-    console.log(this.products);
+    this.cartChanged = 1;
   }
 
   del(item){
     if(item.quantity>1)
       item.quantity--;
     this.totalPrice();
+    this.cartChanged = 1;
   }
 
   goToCheckout() {
@@ -192,6 +197,16 @@ export class CartComponent implements OnInit {
       }
 
     
+  }
+
+  updateCart(){
+    this.productService.updateCart(this.global.currentUser.user_id, this.products).subscribe((res:any)=>{
+      
+    }, (err)=>{
+
+    });
+    this.toastr.success('', 'Successfully Updated!');
+    this.cartChanged = 0;
   }
 
 
