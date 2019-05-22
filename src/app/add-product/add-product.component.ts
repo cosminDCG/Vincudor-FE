@@ -155,7 +155,7 @@ export class AddProductComponent implements OnInit {
     if(this.productName == '' || this.productName == null)
       this.showNameError = 1;
 
-    if(this.type = 'Type')
+    if(this.type == 'Type')
       this.showTypeError = 1;
 
     if(this.color == 'None')

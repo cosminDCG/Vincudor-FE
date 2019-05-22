@@ -204,13 +204,13 @@ export class ProductComponent implements OnInit {
       product_id: index,
       quantity: this.quantity
     }
-    
+
     this.productService.addProductToCart(cart).subscribe((res:any)=>{
-      this.toastr.success('', 'Added to Cart!');
+      
     }, (err)=>{
 
     });
-    console.log("A mers");
+    this.toastr.success('', 'Added to Cart!');
     
   }
 
