@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import * as $ from 'jquery';
 import { NgxUiLoaderModule } from  'ngx-ui-loader';
@@ -38,6 +38,7 @@ import { MyProductsComponent } from './my-products/my-products.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     NgxUiLoaderModule,
     NgbModule,
     Ng5SliderModule,
@@ -80,7 +81,7 @@ import { MyProductsComponent } from './my-products/my-products.component';
       {
         path: 'user/products',
         component: MyProductsComponent
-      }
+      },
     ])
   ],
   providers: [],

@@ -3,6 +3,7 @@ import { Router } from "@angular/router";
 
 import { UserService } from '../services/user-service/user.service';
 import { GlobalService } from '../services/global-service/global.service';
+import { NgModel, FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-authentication',

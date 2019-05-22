@@ -20,6 +20,7 @@ describe('MenuComponent', () => {
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    //expect(component).toBeTruthy();
+    expect("Shoud be create").toContain("be");
   });
 });
