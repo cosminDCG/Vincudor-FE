@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 
 import { ProductService } from '../services/product-service/product.service';
 import { GlobalService } from '../services/global-service/global.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-my-products',
@@ -23,7 +24,8 @@ export class MyProductsComponent implements OnInit {
 
   constructor(private global:GlobalService,
               private productService:ProductService,
-              private router:Router) { }
+              private router:Router,
+              private toastr: ToastrService) { }
 
   ngOnInit() {
     if(localStorage.getItem('crUser') && this.global.currentUser == null) {
@@ -56,6 +58,7 @@ export class MyProductsComponent implements OnInit {
     }, (err)=>{
 
     });
+    this.toastr.error('', 'Deleted!');
     this.items.splice(index,1);
   }
 

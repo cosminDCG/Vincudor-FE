@@ -24,8 +24,7 @@
 
                     <div class="row">
                         <div class="col-md-4">
-                            <h5 *ngFor="let i of [1,2,3,4,5]"><i class="fas fa-star review-star"></i></h5>
-                            <span class="badge badge-success">0 reviewers</span>
+                            <h5 *ngFor="let i of [1,2,3,4,5]" [ngStyle]="{'color':i <= currentItem.avgReview ? 'yellow' : 'black' }"><i class="fas fa-star review-star"></i></h5>
                         </div>
                     </div>
 
@@ -152,10 +151,13 @@
                 <div class="tab-pane fade" id="v-pills-add-rew" role="tabpanel" aria-labelledby="v-pills-add-rew-tab">
                     <h5>{{ global.currentUser.first_name }} {{ global.currentUser.last_name }}</h5><br>
                     <hr>
-                    <h4 *ngFor="let i of [1,2,3,4,5]" (click)="giveRating(i)" [ngStyle]="{'color':i <= rating ? 'yellow' : 'black' }"><i class="fas fa-star review-star rev"></i></h4><br>
-                    <button class="btn btn-sm btn-brand btn-full-width" (click) = "addReview()">
+                    <label *ngIf="currentItem.myReview!=0" style="color: red;">You already reviewed this item!</label><br *ngIf="currentItem.myReview!=0">
+                    <h4 *ngFor="let i of [1,2,3,4,5]" (click)="currentItem.myReview == 0 ? giveRating(i) : $event.stopPropagation()" [ngStyle]="{'color':i <= rating ? 'yellow' : 'black' }"><i class="fas fa-star review-star rev"></i></h4><br>
+                    <button [disabled]="currentItem.myReview!=0" class="btn btn-sm btn-brand btn-full-width" (click) = "addReview()">
                         Add Review
-                    </button>
+                    </button><br>
+
+                    
                 </div>
             </div>
         </div>

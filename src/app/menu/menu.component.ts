@@ -16,4 +16,10 @@ export class MenuComponent implements OnInit {
   ngOnInit() {
   }
 
+  logout(){
+    localStorage.removeItem("crUser");
+    localStorage.removeItem("crProd");
+    this.router.navigate(['/authentication']);
+  }
+
 }
