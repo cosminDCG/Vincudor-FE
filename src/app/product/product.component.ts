@@ -192,7 +192,7 @@ export class ProductComponent implements OnInit {
       this.commentContent="";
       this.disableReplyMode();
       this.commentList.push(comment);
-      this.productService.getProductById(this.global.currentProductId).subscribe((res:any)=>{
+      this.productService.getProductById(this.global.currentProductId, this.global.currentUser.user_id).subscribe((res:any)=>{
         this.currentItem = res.wine;
         this.commentList = res.wine.comments;
         //console.log("Res: " + res.wine.comments);
